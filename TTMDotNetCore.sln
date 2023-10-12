@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.7.34031.279
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34031.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTMDotNetCore.ConsoleApp", "TTMDotNetCore.ConsoleApp\TTMDotNetCore.ConsoleApp.csproj", "{18580833-5F42-4D5A-AF44-3F92FB7A542D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.ConsoleApp", "TTMDotNetCore.ConsoleApp\TTMDotNetCore.ConsoleApp.csproj", "{18580833-5F42-4D5A-AF44-3F92FB7A542D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{EF0662E5-5231-4009-9CEF-322E94A83221}"
+	ProjectSection(SolutionItems) = preProject
+		TTMDotNetCore.ConsoleApp\Document\README.md = TTMDotNetCore.ConsoleApp\Document\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
