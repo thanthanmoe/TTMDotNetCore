@@ -1,0 +1,33 @@
+{
+  "Namespaces": [
+    {
+      "Namespace": "",
+      "ConnectionString": {
+        "ProviderName": "",
+        "ConnectionString": ""
+      },
+      "Path": {
+        "Directory": "",
+        "Extention" :  ""
+      },
+      "Types": [
+        {
+          "Name": "",
+          "Path": {
+            "File": ""            
+          },
+          "Commands": {
+            "Test": {
+              "CommandText": "",
+              "CommandTimeout": 30,
+              "CommandType": 1,
+              "Flags": 0,
+              "Split": "",
+              "IsolationLevel": 1048576
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

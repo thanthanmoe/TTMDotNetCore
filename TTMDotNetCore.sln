@@ -1,14 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.34031.81
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.ConsoleApp", "TTMDotNetCore.ConsoleApp\TTMDotNetCore.ConsoleApp.csproj", "{18580833-5F42-4D5A-AF44-3F92FB7A542D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTMDotNetCore.WindowsFormApp", "TTMDotNetCore.WindowsFormApp\TTMDotNetCore.WindowsFormApp.csproj", "{4DC74CF6-C650-4807-AB2C-FF6DD4E8E7EE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{EF0662E5-5231-4009-9CEF-322E94A83221}"
-	ProjectSection(SolutionItems) = preProject
-		TTMDotNetCore.ConsoleApp\Document\README.md = TTMDotNetCore.ConsoleApp\Document\README.md
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.ConsoleApp", "TTMDotNetCore.ConsoleApp\TTMDotNetCore.ConsoleApp.csproj", "{4C77A151-4DEB-4F86-A7F2-DDE074D487EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTMDotNetCore.WebAPI", "TTMDotNetCore.WebAPI\TTMDotNetCore.WebAPI.csproj", "{DF22138C-9B4D-4DFD-BD37-18581DCD2CF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,10 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{18580833-5F42-4D5A-AF44-3F92FB7A542D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18580833-5F42-4D5A-AF44-3F92FB7A542D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18580833-5F42-4D5A-AF44-3F92FB7A542D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18580833-5F42-4D5A-AF44-3F92FB7A542D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DC74CF6-C650-4807-AB2C-FF6DD4E8E7EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DC74CF6-C650-4807-AB2C-FF6DD4E8E7EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DC74CF6-C650-4807-AB2C-FF6DD4E8E7EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DC74CF6-C650-4807-AB2C-FF6DD4E8E7EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C77A151-4DEB-4F86-A7F2-DDE074D487EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C77A151-4DEB-4F86-A7F2-DDE074D487EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C77A151-4DEB-4F86-A7F2-DDE074D487EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C77A151-4DEB-4F86-A7F2-DDE074D487EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF22138C-9B4D-4DFD-BD37-18581DCD2CF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF22138C-9B4D-4DFD-BD37-18581DCD2CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF22138C-9B4D-4DFD-BD37-18581DCD2CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF22138C-9B4D-4DFD-BD37-18581DCD2CF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

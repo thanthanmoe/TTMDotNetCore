@@ -26,6 +26,7 @@ namespace TTMDotNetCore.ConsoleApp.DrapperExamples
             Update(12,"NextUpdateTitle", "NextUpdateAuthor", "NextUpdateContent");
             Read();
             Delete(12);
+            Read();
         }
         private void Read()
         {
@@ -38,13 +39,13 @@ namespace TTMDotNetCore.ConsoleApp.DrapperExamples
                 Console.WriteLine(items.Blog_Author);
                 Console.WriteLine(items.Blog_Title);
                 Console.WriteLine(items.Blog_Content);
-
             }
         }
         private void Create(String Title,String Author,String Content)
         {
-            string query = $@"Insert Into Tbl_Blog(Blog_Title,Blog_Author,Blog_Content) 
-                            Values(@Blog_Title,@Blog_Author,@Blog_Content)";
+            string query = $@"Insert Into Tbl_Blog
+                                (Blog_Title,Blog_Author,Blog_Content) 
+                          Values(@Blog_Title,@Blog_Author,@Blog_Content)";
             BlogDataModel model = new BlogDataModel()
             {
                 Blog_Title = Title,
@@ -62,8 +63,7 @@ namespace TTMDotNetCore.ConsoleApp.DrapperExamples
             BlogDataModel blog = new BlogDataModel()
             {
                 Blog_Id = id,
-                
-            };
+             };
             using IDbConnection db = new SqlConnection(sqlConnectionStringBuilder.ConnectionString);
             BlogDataModel model = db.Query<BlogDataModel>(query,blog).FirstOrDefault();
             if (model == null)
@@ -80,7 +80,7 @@ namespace TTMDotNetCore.ConsoleApp.DrapperExamples
            ,[Blog_Author]=@Blog_Author
            ,[Blog_Content]=@Blog_Content
             Where Blog_Id = @Blog_Id";
-            BlogDataModel model = new BlogDataModel()
+            BlogDataModel model=new BlogDataModel()
             {
                 Blog_Id = id,
                 Blog_Title = Title,
@@ -95,14 +95,12 @@ namespace TTMDotNetCore.ConsoleApp.DrapperExamples
 
         private void Delete(int id)
         {
-            string checkQuery = "SELECT * FROM Tbl_Blog WHERE Blog_Id=@Blog_Id";
-            string query = $@"Delete from Tbl_Blog Where Blog_Id=@Blog_Id";
+            string checkQuery = "Select * from Tbl_Blog Where Blog_Id = @Blog_Id";
+            string query = $@"Delete from Tbl_Blog Where Blog_Id = @Blog_Id";
             BlogDataModel blog = new BlogDataModel()
             {
                 Blog_Id = id,
-
             };
-            
             using IDbConnection db = new SqlConnection(sqlConnectionStringBuilder.ConnectionString);
             BlogDataModel checkBlog = db.Query<BlogDataModel>(checkQuery,blog).FirstOrDefault();
 
@@ -111,9 +109,7 @@ namespace TTMDotNetCore.ConsoleApp.DrapperExamples
                 Console.WriteLine("This BlogId is not found");
                 return;
             }
-                       
             var result = db.Execute(query, blog);
-
             string message = result > 0 ? "Delete Successful." : "Delete Failed.";
             Console.WriteLine(message);
         }

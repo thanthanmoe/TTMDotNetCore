@@ -30,6 +30,7 @@ namespace TTMDotNetCore.ConsoleApp.AdoDotNetCoreExamples
         private void Read()
         {
             string query = "select * from tbl_blog";
+           
             SqlConnection connection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString);
             connection.Open();
 

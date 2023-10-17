@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TTMDotNetCore.ConsoleApp.Models
 {
-    class BlogDataModel
+    public class BlogDataModel
     { 
     public int Blog_Id { get; set; }
     public string Blog_Title { get; set; }
