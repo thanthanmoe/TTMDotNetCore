@@ -9,6 +9,8 @@
     <PackageReference Include="Drapper" Version="1.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.32" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.32" />
+    <PackageReference Include="Refit" Version="7.0.0" />
+    <PackageReference Include="RestSharp" Version="110.2.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
