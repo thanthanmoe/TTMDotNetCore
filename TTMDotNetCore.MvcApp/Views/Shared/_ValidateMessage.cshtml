@@ -1,0 +1,16 @@
+﻿@if (TempData["IsSuccess"] != null)
+{
+    bool isSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
+    if (isSuccess)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+}

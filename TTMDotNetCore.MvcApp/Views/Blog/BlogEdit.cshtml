@@ -1,0 +1,44 @@
+﻿@model BlogDataModel
+
+<h4>Blog</h4>
+
+@* @if (TempData["IsSuccess"] != null)
+{
+    bool isSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
+    if (isSuccess)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+} *@
+
+<partial name="_ValidateMessage" />
+
+<form method="post" action="/Blog/Update/@Model.Blog_Id">
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" name="Blog_Title" value="@Model.Blog_Title" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Author</label>
+        <input type="text" name="Blog_Author" value="@Model.Blog_Author" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Content</label>
+        <input type="text" name="Blog_Content" value="@Model.Blog_Content" class="form-control">
+    </div>
+    <button type="button" class="btn btn-secondary">Back</button>
+    <button type="submit" class="btn btn-success">Update</button>
+</form>
+@section scripts {
+    <script>
+        // alert();
+    </script>
+}
