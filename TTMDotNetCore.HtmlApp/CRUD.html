@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <input type="text" class="form-control" id="txtTest" />
+    <button type="button" class="btn btn-success" id="btnSave">Save</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Name</th>
+            </tr>
+        </thead>
+        <tbody id="tbodyTest">
+
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script>
+        loadTable();
+
+        $('#btnSave').click(function () {
+            var test = $('#txtTest').val();
+
+            var lst = [];
+            var jsonStr = localStorage.getItem("Tbl_Test");
+            if (!(jsonStr === undefined || jsonStr === null || jsonStr === "")) {
+                lst = JSON.parse(jsonStr);
+            }
+
+            lst.push(test);
+
+            localStorage.setItem("Tbl_Test", JSON.stringify(lst));
+
+            $('#txtTest').val('');
+            $('#txtTest').focus();
+
+            // localStorage.setItem("Test", test);
+            // sessionStorage.setItem("Test", test);
+
+            loadTable();
+        })
+
+        function loadTable() {
+            // $('#tbodyTest').html('');
+            $('#tbodyTest').empty();
+            var lst = [];
+            var jsonStr = localStorage.getItem("Tbl_Test");
+            if (!(jsonStr === undefined || jsonStr === null || jsonStr === "")) {
+                lst = JSON.parse(jsonStr);
+            }
+
+            $.each(lst, function (key, value) {
+                console.log(key + ": " + value);
+                let htmlRow = `
+<tr>
+    <td>${key + 1}</td>
+    <td>${value}</td>
+</tr>
+                `;
+                $('#tbodyTest').append(htmlRow);
+            });
+        }
+    </script>
+</body>
+
+</html>

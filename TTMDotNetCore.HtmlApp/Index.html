@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>hello world</h1>
+    <p id="test"></p>
+    <input type="text" id="test2" />
+    <button type="button" id="btnClick">Click</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        let count = 0;
+
+        let student = {
+            StudentNo : 1,
+            StudentName : 'mg mg'
+        };
+
+        let jsonStr = JSON.stringify(student);
+        console.log(jsonStr);
+        console.log(jsonStr.StudentNo);
+
+        let studentObj = JSON.parse(jsonStr);
+        console.log(studentObj);
+        console.log(studentObj.StudentNo);
+
+        // var c = "a";
+        // c = 1;
+        // let d = 1;
+
+        // javascript
+        // jquery
+
+        // document.getElementById('test').innerHTML = "Test Test";
+        // document.getElementById('test2').value = "Test Test 2";
+
+        $('#test').html("test test");
+        $('#test2').val("test test 2");
+
+        var a = $('#test').html();
+        var b = $('#test2').val();
+
+        console.log({a , b});
+
+        fun1();
+
+        console.log(fun2());
+
+        function fun1(){
+            var c = "a";
+        }
+
+        function fun2(){
+            return 1;
+        }
+
+        setTimeout(() => {
+            console.log(2);
+        }, 4000);
+
+        var interval1 = setInterval(() => {
+            // console.log(3);
+            count++;
+            $('#test2').val(count);
+        }, 2000);
+
+        // var, const, let
+
+        // console.log("test test dfasdfasf");
+
+        $('#btnClick').click(function(){
+            // alert();
+            clearInterval(interval1);
+        })
+    </script>
+</body>
+
+</html>
