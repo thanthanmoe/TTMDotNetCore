@@ -87,6 +87,7 @@ namespace TTMDotNetCore.MvcApp.Controllers
                     Blog_Author = i.ToString(),
                     Blog_Content = i.ToString(),
                 });
+
                 var result = await _context.SaveChangesAsync();
             }
             return Redirect("/Blog");
