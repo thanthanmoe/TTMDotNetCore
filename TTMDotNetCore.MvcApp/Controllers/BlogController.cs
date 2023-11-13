@@ -111,6 +111,7 @@ namespace TTMDotNetCore.MvcApp.Controllers
                 TempData["Message"] = "No data found.";
                 return Redirect("/Blog");
             }
+
             return View("BlogEdit", item);
         }
 
