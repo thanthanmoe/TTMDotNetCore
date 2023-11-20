@@ -144,5 +144,31 @@ namespace TTMDotNetCore.MvcApp.Controllers
             TempData["Message"] = result > 0 ? "Updating Successful." : "Updating Failed.";
             return Redirect("/Blog");
         }
+        [ActionName("Delete")]
+        public async Task<IActionResult> BlogDelete(int id)
+        {
+            bool isExist = await _context.Blogs.AsNoTracking().AnyAsync(x => x.Blog_Id == id);
+            if (!isExist)
+            {
+                TempData["IsSuccess"] = false;
+                TempData["Message"] = "No data found.";
+                return Redirect("/Blog");
+            }
+
+            var item = await _context.Blogs.AsNoTracking().FirstOrDefaultAsync(x => x.Blog_Id == id);
+            if (item == null)
+            {
+                TempData["IsSuccess"] = false;
+                TempData["Message"] = "No data found.";
+                return Redirect("/Blog");
+            }
+
+            _context.Blogs.Remove(item);
+            var result = await _context.SaveChangesAsync();
+            TempData["IsSuccess"] = result > 0;
+            TempData["Message"] = result > 0 ? "Deleting Successful." : "Deleting Failed.";
+
+            return Redirect("/Blog");
+        }
     }
 }

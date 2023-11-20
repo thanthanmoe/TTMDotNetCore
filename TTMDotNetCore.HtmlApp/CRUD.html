@@ -74,15 +74,15 @@
             $.each(lst, function (key, value) {
                 console.log(key + ": " + value.Id + "," + value.Name);
                 let htmlRow = `
-<tr>
-    <td>
-        <button type="button" class="btn btn-warning" onclick="Edit(this)" data-id="${value.Id}">Edit</button>
-        <button type="button" class="btn btn-danger" onclick="Delete(this)" data-id="${value.Id}">Delete</button>
-        </td>
-    <td>${key + 1}</td>
-    <td>${value.Id}</td>
-    <td>${value.Name}</td>
-</tr>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-warning" onclick="Edit(this)" data-id="${value.Id}">Edit</button>
+                        <button type="button" class="btn btn-danger" onclick="Delete(this)" data-id="${value.Id}">Delete</button>
+                        </td>
+                    <td>${key + 1}</td>
+                    <td>${value.Id}</td>
+                    <td>${value.Name}</td>
+                </tr>
                 `;
                 $('#tbodyTest').append(htmlRow);
             });
