@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda-themeless.min.css"
+        integrity="sha512-O82mrFLGbN9lUKQvbguKzEWmMtn4jO6txC9byiL0cjPGz4MeREeBY9dQR0ymgy8LhRgUL8JG0HtAGKYzg8pkTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.css"
+        integrity="sha512-zB1n/jwQD1XiJf3rDBfZVm5xqngjw1C48MYyJ8XOd/7OLvDbjUmY9+gGyeJORcYXSv3qFOZ3VdHAoullPFHIYA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <button class="btn btn-primary ladda-button" id="btnClick" data-style="expand-left"><span
+            class="ladda-label">expand-left</span></button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/spin.min.js"
+        integrity="sha512-qByKQKO3eTwzJtP8Y395YbP45QyYZNpJfYu8jfFpWgFTK2xWIiOER7G+63EoXk475fBFzY6HIhbEUio6m72EaQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js"
+        integrity="sha512-OxowQ96EheBKRxTivGsizVvTK8bWt2xZlymiMZ9MArbmOmuxbv+2IlC46k4gZPhZH5eVQAm0F6lk9Yt6M4xu7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $('#btnClick').click(function (e) {
+            e.preventDefault();
+            var l = Ladda.create(this);
+            l.start();
+
+            setTimeout(() => {
+                l.stop();
+            }, 1000);
+        })
+    </script>
+</body>
+
+</html>
