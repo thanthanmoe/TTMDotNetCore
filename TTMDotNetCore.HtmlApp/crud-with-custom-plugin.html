@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Html and Javascript</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 
@@ -13,9 +13,11 @@
 </head>
 
 <body>
-    <input type="text" class="form-control" id="txtTest" />
-    <button type="button" class="btn btn-success" id="btnSave">Save</button>
-    <button type="button" class="btn btn-info" id="btnUpdate">Update</button>
+    <div id="loading">
+        <input type="text" class="form-control" id="txtTest" />
+        <button type="button" class="btn btn-success" id="btnSave">Save</button>
+        <button type="button" class="btn btn-info" id="btnUpdate">Update</button>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -39,8 +41,74 @@
     <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"
         integrity="sha256-pXMqYvjzxYjuQ3+Iz0Zpw3Tk3BAoet8dOsODol/iqTI=" crossorigin="anonymous"></script>
     <script>
-        var editId = "";
+        Notiflix.Notify.init({
+            width: '280px',
+            position: 'right-top',
+            distance: '10px',
+            opacity: 1,
+            borderRadius: '5px',
+            rtl: false,
+            timeout: 3000,
+            messageMaxLength: 110,
+            backOverlay: false,
+            backOverlayColor: 'rgba(0,0,0,0.5)',
+            plainText: true,
+            showOnlyTheLastOne: true,
+            clickToClose: false,
+            pauseOnHover: true,
+            ID: 'NotiflixNotify',
+            className: 'notiflix-notify',
+            zindex: 4001,
+            fontFamily: 'Quicksand',
+            fontSize: '13px',
+            cssAnimation: true,
+            cssAnimationDuration: 400,
+            cssAnimationStyle: 'fade',
+            closeButton: false,
+            useIcon: true,
+            useFontAwesome: false,
+            fontAwesomeIconStyle: 'basic',
+            fontAwesomeIconSize: '34px',
+            success: {
+                background: '#32c682',
+                textColor: '#fff',
+                childClassName: 'notiflix-notify-success',
+                notiflixIconColor: 'rgba(0,0,0,0.2)',
+                fontAwesomeClassName: 'fas fa-check-circle',
+                fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
+                backOverlayColor: 'rgba(50,198,130,0.2)',
+            },
+            failure: {
+                background: '#ff5549',
+                textColor: '#fff',
+                childClassName: 'notiflix-notify-failure',
+                notiflixIconColor: 'rgba(0,0,0,0.2)',
+                fontAwesomeClassName: 'fas fa-times-circle',
+                fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
+                backOverlayColor: 'rgba(255,85,73,0.2)',
+            },
+            warning: {
+                background: '#eebf31',
+                textColor: '#fff',
+                childClassName: 'notiflix-notify-warning',
+                notiflixIconColor: 'rgba(0,0,0,0.2)',
+                fontAwesomeClassName: 'fas fa-exclamation-circle',
+                fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
+                backOverlayColor: 'rgba(238,191,49,0.2)',
+            },
+            info: {
+                background: '#26c0d3',
+                textColor: '#fff',
+                childClassName: 'notiflix-notify-info',
+                notiflixIconColor: 'rgba(0,0,0,0.2)',
+                fontAwesomeClassName: 'fas fa-info-circle',
+                fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
+                backOverlayColor: 'rgba(38,192,211,0.2)',
+            },
+        });
 
+        var editId = "";
+        $("#txtTest").focus();
         loadTable();
 
         $("#btnSave").click(function () {
@@ -69,22 +137,29 @@
             // sessionStorage.setItem("Test", test);
 
             //loadTable();
-            confirmMsg("Are you sure want to Save?").then((result) => {
-                console.log(result);
-                if (!result) return;
-                lst.push(testObj);
+            //check();
 
-                localStorage.setItem("Tbl_Test", JSON.stringify(lst));
 
-                $("#txtTest").val("");
+            let input = $('#txtTest').val().trim();
+
+            if (input === null || input === undefined || input === '' || input === ' ') {
+
+                Notiflix.Notify.warning('Please enter text', {
+                    position: 'center-top',
+                    transitionOut: 'fadeOutUp'
+                });
                 $("#txtTest").focus();
-                loadTable();
+                return;
+            }
+
+            Notiflix.Block.standard('#loading');
+            setTimeout(() => {
+                // Notiflix.Loading.remove(1000);
+                Notiflix.Block.remove('#loading', 1923);
                 successMsg("Saving Successful.");
-                console.log("Setting focus...");
-                var interval1 = setInterval(() => {
-                    $("#txtTest").focus();
-                }, 2000);
-            });
+                loadTable();
+            }, 2000);
+
         });
 
         function loadTable() {
@@ -158,6 +233,16 @@
             // editId = "";
             // setLocal(lst);
             // loadTable();
+
+            let input = $('#txtTest').val();
+
+            if (input === null || input === undefined || input === '') {
+                Notiflix.Notify.warning('Please enter text', {
+                    position: 'center-top',
+                    transitionOut: 'fadeOutUp'
+                });
+                return;
+            }
             confirmMsg("Are you sure want to Update?").then((result) => {
                 console.log(result);
                 if (!result) return;
@@ -172,7 +257,7 @@
                 setLocal(lst);
                 $("#txtTest").val("");
                 loadTable();
-                successMsg("Deleting Successful.");
+                successMsg("Update Successful.");
                 // setTimeout(() => {
                 //     $("#txtTest").focus();
                 // }, 3000);
@@ -230,14 +315,20 @@
         function setLocal(lst) {
             localStorage.setItem("Tbl_Test", JSON.stringify(lst));
         }
-
+        function check() {
+            let input = $('#txtTest').val();
+            if (input === null || input === undefined || input === '') {
+                Notiflix.Notify.warning('please enter text');
+                return;
+            }
+        }
         function successMsg(message) {
             // Swal.fire({
             //   title: "Success",
             //   text: message,
             //   icon: "success",
             // });
-            Notiflix.Report.success("Success", message, "Okay");
+            Notiflix.Notify.success(message);
         }
 
         function confirmMsg(message) {
