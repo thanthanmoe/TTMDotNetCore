@@ -10,12 +10,15 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-3.2.6.min.css"
         integrity="sha256-quZ4+TPWUyQzuPnahKf6d8Xal6tZcYZTzSt4wFVEFn8=" crossorigin="anonymous" />
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.css" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda-themeless.min.css">
 </head>
 
 <body>
     <div id="loading">
         <input type="text" class="form-control" id="txtTest" />
-        <button type="button" class="btn btn-success" id="btnSave">Save</button>
+        <button type="button" class="btn btn-success ladda-button" id="btnSave" data-style="expand-left">Save</button>
         <button type="button" class="btn btn-info" id="btnUpdate">Update</button>
     </div>
     <table class="table">
@@ -29,7 +32,9 @@
         </thead>
         <tbody id="tbodyTest"></tbody>
     </table>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/spin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -111,7 +116,15 @@
         $("#txtTest").focus();
         loadTable();
 
-        $("#btnSave").click(function () {
+        $("#btnSave").click(function (e) {
+            e.preventDefault();
+            var l = Ladda.create(this);
+            l.start();
+
+            setTimeout(() => {
+                l.stop();
+            }, 1000);
+
             var test = $("#txtTest").val();
 
             // var lst = [];
@@ -151,13 +164,19 @@
                 $("#txtTest").focus();
                 return;
             }
+            lst.push(testObj);
 
+            localStorage.setItem("Tbl_Test", JSON.stringify(lst));
             Notiflix.Block.standard('#loading');
             setTimeout(() => {
                 // Notiflix.Loading.remove(1000);
                 Notiflix.Block.remove('#loading', 1923);
                 successMsg("Saving Successful.");
+                $("#txtTest").val("");
+                $("#txtTest").focus();
+
                 loadTable();
+
             }, 2000);
 
         });
