@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toast</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+
+<body>
+    <button type="button" id="btnToast">Button</button>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+        function showToastOnClick() {
+            Toastify({
+                text: "This is a toast",
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "center",
+                stopOnFocus: true,
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                },
+                onClick: function () { }
+            }).showToast();
+
+
+            var toastInstance = Toastify.getInstance();
+            if (toastInstance) {
+                toastInstance.hide({
+                    transitionOut: 'fadeOutUp'
+                });
+            }
+        }
+
+        // Add click event listener to the button
+        document.getElementById('btnToast').addEventListener('click', showToastOnClick);
+    </script>
+
+</body>
+
+</html>
