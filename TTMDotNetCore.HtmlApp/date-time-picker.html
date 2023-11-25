@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Time Picker Example</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+    <!-- Bootstrap DateTimePicker JS and CSS CDN -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+</head>
+
+<body>
+
+
+
+    <input type="text" id="datetimepicker" />
+    <input data-toggle="datetimepicker" />
+
+    <script>
+        $('[data-toggle="datetimepicker"]').datetimepicker();
+        $(function () {
+            $('#datetimepicker').datetimepicker({
+                format: 'DD-MM-YYYY HH:mm:ss'
+            });
+        });
+    </script>
+
+</body>
+
+</html>
