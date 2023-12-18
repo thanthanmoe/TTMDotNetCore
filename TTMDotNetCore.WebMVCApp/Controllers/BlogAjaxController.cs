@@ -30,7 +30,7 @@ namespace TTMDotNetCore.WebMVCApp.Controllers
                 pageCount++;
 
             model.Blogs = lst;
-            model.PageSetting = new PageSettingModel(pageNo, pageSize, pageCount, "/blog/list");
+            model.PageSetting = new PageSettingModel(pageNo, pageSize, pageCount, "/blogajax/list");
 
             return View("BlogList", model);
         }
@@ -84,7 +84,7 @@ namespace TTMDotNetCore.WebMVCApp.Controllers
                 return Json(model);
             }
 
-            var item = await _context.Blogs.AsNoTracking().FirstOrDefaultAsync(x => x.Blog_Id == reqModel.Blog_Id);
+            var item = await _context.Blogs.FirstOrDefaultAsync(x => x.Blog_Id == reqModel.Blog_Id);
             if (item == null)
             {
                 string message = "No data found.";
