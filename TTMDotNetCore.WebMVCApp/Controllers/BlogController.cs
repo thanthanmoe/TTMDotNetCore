@@ -124,9 +124,9 @@ namespace TTMDotNetCore.WebMVCApp.Controllers
 
         [HttpPost]
         [ActionName("Update")]
-        public async Task<IActionResult> BlogUpdate(int id, BlogDataModel blog)
+        public async Task<IActionResult> BlogUpdate(BlogDataModel blog)
         {
-            bool isExist = await _context.Blogs.AsNoTracking().AnyAsync(x => x.Blog_Id == id);
+            bool isExist = await _context.Blogs.AsNoTracking().AnyAsync(x => x.Blog_Id == blog.Blog_Id);
             if (!isExist)
             {
                 TempData["IsSuccess"] = false;
@@ -134,7 +134,7 @@ namespace TTMDotNetCore.WebMVCApp.Controllers
                 return Redirect("/Blog");
             }
 
-            var item = await _context.Blogs.FirstOrDefaultAsync(x => x.Blog_Id == id);
+            var item = await _context.Blogs.FirstOrDefaultAsync(x => x.Blog_Id == blog.Blog_Id);
             if (item == null)
             {
                 TempData["IsSuccess"] = false;
