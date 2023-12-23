@@ -1,5 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace TTMDotNetCore.WebMVCApp.Models
 {
@@ -7,11 +12,13 @@ namespace TTMDotNetCore.WebMVCApp.Models
     public class BlogDataModel
     {
         [Key]
+        [Column("Blog_Id")]
         public int Blog_Id { get; set; }
         public string Blog_Title { get; set; }
         public string Blog_Author { get; set; }
         public string Blog_Content { get; set; }
     }
+
     public class BlogDataResponseModel
     {
         public PageSettingModel PageSetting { get; set; }
@@ -49,5 +56,15 @@ namespace TTMDotNetCore.WebMVCApp.Models
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
     }
-
 }
+
+//public class ScatterResponseModel
+//{
+//    public List<ScatterModel> Data { get; set; }
+//}
+
+//public class ScatterModel
+//{
+//    public string name { get; set; }
+//    public float[][] data { get; set; }
+//}
