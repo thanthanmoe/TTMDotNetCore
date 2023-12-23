@@ -11,13 +11,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-3.2.6.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/AEHKLMNSTZDotNetCore.MvcApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TTMDotNetCore.WebMVCApp.styles.css" asp-append-version="true" />
+ 
+        <!-- other head content -->
+        @RenderSection("style", required: false)
+
+
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AEHKLMNSTZDotNetCore.MvcApp</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TTMDotNetCore.WebMVCApp</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -32,6 +37,63 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">Blog</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Apex Chart
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/apexchart/piechart">Pie Chart</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/candlestickchart">Candle Stick Chart</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/rangeareachart">Range Area Chart</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/radarchart">Radar Chart</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/treeMap">TreeMap</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/heatmapchart">Heat Map Chart</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/radialbarchart">Radial Bar Chart</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/funnelchart">Funnel Chart</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/boxplotchart">Box Plot Chart</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/bubblechart">Bubble Chart</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/linechart">Line Chart</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/barchart">Bar Chart</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/mixedchart">Mixed Chart</a></li>
+
+                                <li><a class="dropdown-item" href="/apexchart/candlestickchart">Candle Stick  Chart</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/TimeLineChart">TimeLineChart</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/PolarAreaChart">Polar Area Chart</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/columnchart">Column Chart</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/areachart">Area Chart</a></li>
+                                <li><a class="dropdown-item" href="/apexchart/scatterchart">Scatter Chart</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Chart Js
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/chartjs/piechart">Pie Chart</a></li>
+                                <li><a class="dropdown-item" href="/chartjs/stackedbarlinechart">Staced Bar Line Chart</a></li>
+                                <li><a class="dropdown-item" href="/chartjs/legendpointstyle">Legend Point Style</a></li>
+                                <li><a class="dropdown-item" href="/chartjs/pointstylingchart"> Point Styling Chart</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Canvas Js
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/canvasjs/piechart">Pie Chart</a></li>
+                                <li><a class="dropdown-item" href="/canvasjs/pyramidchart">Pyramid Chart</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                HighCharts
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/highcharts/piechart">Pie Chart</a></li>
+                                <li><a class="dropdown-item" href="/highcharts/basiccolumnchart">Basic Column Chart</a></li>
+                            </ul>
+                           
                         </li>
                     </ul>
                 </div>
@@ -57,9 +119,23 @@
     <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/spin.min.js" integrity="sha512-qByKQKO3eTwzJtP8Y395YbP45QyYZNpJfYu8jfFpWgFTK2xWIiOER7G+63EoXk475fBFzY6HIhbEUio6m72EaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js" integrity="sha512-OxowQ96EheBKRxTivGsizVvTK8bWt2xZlymiMZ9MArbmOmuxbv+2IlC46k4gZPhZH5eVQAm0F6lk9Yt6M4xu7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 
+    @* <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> *@
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/11.2.0/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/11.2.0/highcharts-more.js"></script>
     <script src="~/js/custom.js"></script>
+ 
 
     @await RenderSectionAsync("scripts", required: false)
+
 </body>
 </html>
