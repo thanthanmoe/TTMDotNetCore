@@ -1,8 +1,8 @@
-﻿@model ChartJsStackedBarLineChartModel
-@using Newtonsoft.Json;
+﻿@model ChartJsStackedBarLineChartResponseModel
+
 @{
-    List<int> _data1 = Model.DataSets[0].Datas;
-    List<int> _data2 = Model.DataSets[0].Datas;
+    List<int> _data1 = Model.DataSets[0].Data;
+    List<int> _data2 = Model.DataSets[0].Data;
 }
 
 <div>
@@ -21,9 +21,9 @@
             datasets: [
                 {
                     label: "@Model.DataSets[0].Label",
-                    data: @Html.Raw(JsonConvert.SerializeObject(_data1)) ,
-                    borderColor: "@Model.DataSets[0].BorderColor" ,
-                    backgroundColor: "@Model.DataSets[0].BackgroundColor" ,
+                    data: @Html.Raw(JsonConvert.SerializeObject(_data1)),
+                    borderColor: "@Model.DataSets[0].BorderColor",
+                    backgroundColor: "@Model.DataSets[0].BackgroundColor",
                     stack: 'combined',
                     type: 'bar'
                 },

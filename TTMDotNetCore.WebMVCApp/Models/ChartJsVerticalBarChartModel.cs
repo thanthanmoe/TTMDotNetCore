@@ -1,6 +1,6 @@
 ﻿namespace AEHKLMNSTZDotNetCore.MvcApp.Models
 {
-    public class ChartJsStackedBarLineChartModel
+    public class ChartJsVerticalBarChartModel
     {
         public List<int> Data { get; set; }
 
@@ -9,7 +9,5 @@
         public string BorderColor { get; set; }
 
         public string BackgroundColor { get; set; }
-
     }
-
 }
