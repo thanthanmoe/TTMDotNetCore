@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TTMDotNetCore.WebMVCApp.Models
+namespace AEHKLMNSTZDotNetCore.MvcApp.Models
 {
     [Table("Tbl_Blog")]
     public class BlogDataModel

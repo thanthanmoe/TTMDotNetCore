@@ -1,4 +1,4 @@
-﻿namespace TTMDotNetCore.WebMVCApp.Models
+﻿namespace AEHKLMNSTZDotNetCore.MvcApp.Models
 {
     public class ApexChartBarChartModel
     {

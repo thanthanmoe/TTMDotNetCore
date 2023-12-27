@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.RestAPI", "TT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.MvcApp", "TTMDotNetCore.MvcApp\TTMDotNetCore.MvcApp.csproj", "{ED12FB8C-FE27-4192-B104-AEF9ED123278}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTMDotNetCore.WebMVCApp", "TTMDotNetCore.WebMVCApp\TTMDotNetCore.WebMVCApp.csproj", "{3C8625A1-693A-44A2-A6CD-E99DDD2F67F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.WebMVCApp", "TTMDotNetCore.WebMVCApp\TTMDotNetCore.WebMVCApp.csproj", "{3C8625A1-693A-44A2-A6CD-E99DDD2F67F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTMDotNetCore.ThemeMvcApp", "TTMDotNetCore.ThemeMvcApp\TTMDotNetCore.ThemeMvcApp.csproj", "{2FE4D95A-5F08-4A59-96EC-299DD458FCCC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{3C8625A1-693A-44A2-A6CD-E99DDD2F67F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C8625A1-693A-44A2-A6CD-E99DDD2F67F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C8625A1-693A-44A2-A6CD-E99DDD2F67F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FE4D95A-5F08-4A59-96EC-299DD458FCCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FE4D95A-5F08-4A59-96EC-299DD458FCCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FE4D95A-5F08-4A59-96EC-299DD458FCCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FE4D95A-5F08-4A59-96EC-299DD458FCCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
