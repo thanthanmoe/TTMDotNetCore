@@ -1,0 +1,180 @@
+﻿@model UserDataResponseModel
+@{
+	// Layout = "_MainLayout";
+	Layout = "_Layout";
+
+	ViewData["Title"] = "Home Page";
+
+
+	string message = null;
+	bool isSuccess = false;
+	if (TempData["Message"] != null)
+	{
+		message = TempData["Message"].ToString();
+		isSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
+	}
+	int pageNo = Model.PageSetting.PageNo;
+	int pageSize = Model.PageSetting.PageSize;
+	int pageCount = Model.PageSetting.PageCount;
+	int count = (pageNo - 1) * pageSize;
+	string url = Model.PageSetting.PageUrl;
+}
+
+
+
+<div id="preloader">
+	<div class="lds-ripple">
+		<div></div>
+		<div></div>
+	</div>
+</div>
+@* @if (message is not null)
+{
+	<div class="alert alert-@(isSuccess ? "success" : "danger")" role="alert">
+		@message
+	</div>
+} *@
+
+<!--*******************
+	Preloader end
+********************-->
+<!--**********************************
+	Main wrapper start
+***********************************-->
+<div id="main-wrapper">
+
+
+	<!--**********************************
+		Content body start
+	***********************************-->
+	<div class="content-body">
+		<div class="page-titles">
+			
+		</div>
+		<!-- container starts -->
+		<div class="container-fluid">
+
+			<!-- row -->
+			<div class="element-area">
+				<div class="demo-view">
+					<div class="container-fluid pt-0 ps-0 pe-lg-4 pe-0">
+						<!-- Column starts -->
+						<div class="col-xl-12">
+							<div class="card dz-card" id="accordion-three">
+								<div class="card-header flex-wrap d-flex justify-content-between">
+									<div>
+										
+										<a class="m-0 subtitle" href="/User/UserCreate">Add User Account</a>
+									</div>
+									<ul class="nav nav-tabs dzm-tabs" id="myTab-2" role="tablist" style="background-color:gray">
+										<li class="nav-item" role="presentation">
+											<button class="nav-link active " id="home-tab-2" data-bs-toggle="tab" data-bs-target="#withoutSpace" type="button" role="tab" aria-selected="true">User Account List</button>
+										</li>
+										@* <li class="nav-item" role="presentation">
+											<button class="nav-link active " id="home-tab-2" data-bs-toggle="tab" data-bs-target="#withoutSpace" type="button" role="tab" aria-selected="true">Preview</button>
+										</li>
+										<li class="nav-item" role="presentation">
+											<button class="nav-link " id="profile-tab-2" data-bs-toggle="tab" data-bs-target="#withoutSpace-html" type="button" role="tab" aria-selected="false">HTML</button>
+										</li> *@
+									</ul>
+								</div>
+
+								<!-- /tab-content -->
+								<div class="tab-content" id="myTabContent-2">
+									<div class="tab-pane fade show active" id="withoutSpace" role="tabpanel" aria-labelledby="home-tab-2">
+										<div class="card-body pt-0">
+											<div class="table-responsive">
+												<table id="example3" class="display table" style="min-width: 845px">
+													<thead>
+														<tr>
+															
+															<th>SrNo</th>
+															<th>FullName</th>
+															<th>NRCNo</th>
+															<th>CardCode</th>
+															<th>CardType</th>
+															<th>Email</th>
+															<th>Phone No</th>
+															<th></th>
+															@* <th>Education</th>
+															<th>Mobile</th>
+															<th>Email</th>
+															<th>Joining Date</th>
+															<th>Action</th> *@
+														</tr>
+													</thead>
+													<tbody>
+														@foreach (var item in Model.Users)
+														{
+															<tr>
+																@* <td><img class="rounded-circle" width="35" src="images/profile/small/pic1.jpg" alt=""></td> *@
+																<th scope="row">@(++count)</th>
+																<td>@item.FullName</td>
+																<td>@item.NRCNo</td>
+																<td>@item.CardCode</td>
+																<td>@item.CardType</td>
+																<td>@item.Email</td>
+																<td>@item.PhoneNo</td>
+																<td>
+																	<div class="d-flex">
+																		<a href=" /user/useredit/@item.UserId" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+																		<a  class="btn btn-danger shadow btn-xs sharp btnDelete" data-user-id="@item.UserId"><i class="fa fa-trash"></i></a>
+																	</div>
+																</td>
+															</tr>
+														}
+
+													</tbody>
+												</table>
+												@await Html.PartialAsync("_Pagination", Model.PageSetting)
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade " id="withoutSpace-html" role="tabpanel" aria-labelledby="home-tab-2">
+										<div class="card-body pt-0 p-0 code-area">
+										</div>
+									</div>
+								</div>
+								<!-- /tab-content -->
+
+							</div>
+						</div>
+						<!-- Column ends -->
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+</div>
+@section scripts {
+	<script>
+	
+		$(".btnDelete").click(function () {
+			var _reqModel = {
+				AdminId: $(this).data('admin-id'),
+			};
+
+			confirmMessage("Are you sure want to delete?").then((result) => {
+				if (!result) return;
+
+				$.ajax({
+					url: "/admin/delete",
+					type: "POST",
+					data:
+					{
+						reqModel: _reqModel
+					},
+					success: function (data) {
+						showMessage(data, '/admin/adminlist');
+					},
+					error: function (request, status, error) {
+						console.log({ request, status, error });
+					}
+				});
+			});
+		});
+	</script>
+}
+

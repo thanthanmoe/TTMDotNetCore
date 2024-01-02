@@ -1,0 +1,89 @@
+﻿<div class="content-body">
+	<div class="container-fluid">
+		
+		<div class="col-xl-12 col-lg-12">
+			<div class="card">
+				<div class="card-header">
+					<h4 class="card-title">Change Password Form</h4>
+				</div>
+				<div class="card-body">
+					<div class="basic-form">
+						<form>
+							<div class="mb-3 row">
+								<label class="col-sm-3 col-form-label">Old Password</label>
+								<div class="col-sm-6">
+									<input type="password" class="form-control" placeholder="Enter Old Password" id="OldPassword">
+								</div>
+							</div>
+							<div class="mb-3 row">
+								<label class="col-sm-3 col-form-label">New Password</label>
+								<div class="col-sm-6">
+									<input type="password" class="form-control" id="NewPassword" placeholder="Enter New Password">
+								</div>
+							</div>
+
+							<div class="mb-3 row">
+								<div class="col-sm-3">If Your Sure,Click</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="check">
+										<label class="form-check-label">
+
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="mb-3 row">
+								<div class="col-sm-3"></div>
+								<div class="col-sm-9">
+									<button type="button" class="btn btn-primary" id="btnSave">Change</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@section scripts {
+	<script>
+		$('#btnSave').click(function (event) {
+			event.preventDefault();
+			if ($('#OldPassword').val() === '' || $('#NewPassword').val() === '') {
+				warningMessage("All Fill To Change.");
+			}
+			else if ($('#check').is(':checked')) {
+				var requestModel = {
+					OldPassword: $('#OldPassword').val(),
+					NewPassword: $('#NewPassword').val(),
+				};
+
+				$.ajax({
+					url: '/admin/AdminChange',
+					type: 'POST',
+					data: { reqModel: requestModel },
+					dataType: 'json',
+					success: function (data) {
+						showMessage(data, "/admin/change");
+					},
+					error: function (xhr, status, error) {
+						console.error("AJAX Error: " + status + " - " + error);
+
+						// Log or display details from the xhr object
+						console.log("XHR Status: " + xhr.status);
+						console.log("XHR Response Text: " + xhr.responseText);
+
+						showMessage("An error occurred. Please try again.", "/admin/change");
+					}
+				});
+			}
+			else {
+				// Display a message indicating that the checkbox is not checked
+				warningMessage('Please check the checkbox before withdrawing.');
+			}
+		});
+
+	</script>
+}
+

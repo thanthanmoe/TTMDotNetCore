@@ -1,0 +1,144 @@
+﻿@model TTMDotNetCore.ATMMvcApp.Models.UserModel
+
+@{
+	Layout = "_LayoutUser";
+}
+
+
+
+<div id="main-wrapper">
+	<h4></h4>
+	<div class="content-body">
+		<div class="container-fluid">
+			<div class="row h-100">
+				<div class="col-lg-4 col-md-7 col-sm-12 mx-auto align-self-center">
+					<div class="login-form">
+						<div class="text-center">
+							<h3 class="title">Update account</h3>
+							@* <p>Sign in to your account to start using W3CRM</p> *@
+						</div>
+						<form action="index.html">
+							<div class="mb-4">
+								<label class="mb-1 text-dark">FullName</label>
+								<input type="text" class="form-control form-control" id="FullName" value="@Model.FullName">
+							</div>
+
+							<div class="mb-4">
+								<label class="mb-1 text-dark">Card Type</label>
+								<select class="form-control" id="CardType">
+									<option value="creditCard" selected=@(Model.CardType== "creditCard" ? "selected" : "" ) disabled>Credit Card</option>
+									<option value="specialCard" selected=@(Model.CardType == "specialCard" ? "selected" : "") disabled>Special Card</option>
+								</select>
+							</div>
+							@*
+							<div class="mb-4">
+							<label class="mb-1 text-dark">Address</label>
+							<input type="text" class="form-control form-control" id="Address">
+							</div> *@
+
+							<div class="mb-4">
+								<label class="mb-1 text-dark">PhoneNo</label>
+								<input type="text" class="form-control form-control" id="PhoneNo" value="@Model.PhoneNo">
+							</div>
+							<div class="mb-4">
+								<label class="mb-1 text-dark">CurrentBalance</label>
+								<input type="text" class="form-control form-control" id="CurrentBalance" value="@Model.CurrentBalance" disabled>
+							</div>
+							<div class="mb-4 position-relative">
+								<label class="mb-1 text-dark">Password</label>
+								<input type="password" class="form-control" id="Password" value="123456" value="@Model.Password">
+								@* <span class="show-pass eye">
+
+								<i class="fa fa-eye-slash"></i>
+								<i class="fa fa-eye"></i>
+
+								</span> *@
+							</div>
+
+							<div class="form-row d-flex justify-content-between mt-4 mb-2">
+								<div class="mb-4">
+									<div class="form-check custom-checkbox mb-3">
+										<input type="checkbox" class="form-check-input" id="customCheckBox1" required="">
+										<label class="form-check-label" for="customCheckBox1">Remember my preference</label>
+									</div>
+								</div>
+
+							</div>
+							<div class="text-center mb-4">
+								<button type="button" class="btn btn-primary btn-block" id="btnSave">Update</button>
+							</div>
+
+
+							<div class="mb-3">
+								
+									<a target="_blank" href="https://www.facebook.com/" class="fab fa-facebook-f btn-facebook"></a>
+									<a target="_blank" href="https://www.google.com/" class="fab fa-google-plus-g btn-google-plus mx-2"></a>
+									<a target="_blank" href="https://www.linkedin.com/" class="fab fa-linkedin-in btn-linkedin me-2"></a>
+									<a target="_blank" href="https://twitter.com/" class="fab fa-twitter btn-twitter"></a>
+								
+							</div>
+
+						</form>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-4 mr-5">
+					<div class="pages-center h-100  align-self-center">
+
+						<div class="login-content">
+						</div>
+						<br>
+						<br>
+						<div class="mb-4">
+							<label class="mb-1 text-dark">NRCNo</label>
+							<input type="text" class="form-control form-control" id="NRCNo" value="@Model.NRCNo" disabled>
+						</div>
+
+						<div class="mb-4">
+							<label class="mb-1 text-dark">Card Code</label>
+							<input type="text" class="form-control form-control" id="CardCode" value="@Model.CardCode" disabled>
+						</div>
+						<div class="mb-4">
+							<label class="mb-1 text-dark">Email</label>
+							<input type="email" class="form-control form-control" id="Email" value="@Model.Email">
+						</div>
+						<div class="mb-4">
+							<label class="mb-1 text-dark">Address</label>
+							<input type="text" class="form-control form-control" id="Address" value="@Model.Address">
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section scripts {
+	<script>
+		$('#btnSave').click(function () {
+			
+			var _reqModel = {
+				FullName: $('#FullName').val(),
+				Address: $('#Address').val(),
+				PhoneNo: $('#PhoneNo').val(),
+				Password: $('#Password').val(),
+				Email: $('#Email').val(),
+			};
+
+			$.ajax({
+				url: '/user/Update',
+				type: 'POST',
+				data: {
+					reqModel: _reqModel
+				},
+				success: function (data) {
+
+					showMessage(data, "/user/edit");
+				},
+				error: function (request, status, error) {
+					console.log({ request, status, error });
+				}
+			});
+		})
+	</script>
+}

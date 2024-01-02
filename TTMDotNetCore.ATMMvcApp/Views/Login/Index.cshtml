@@ -1,0 +1,113 @@
+﻿@{
+	Layout = "_MainLayout";
+
+}
+
+<body class="vh-100">
+	<div class="page-titles">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item "><a href="#">Contact</a></li>
+			<li class="breadcrumb-item active"><a href="#">Pravicy</a></li>
+		</ol>
+	</div>
+	<div class="authincation h-100">
+		<div class="container-fluid h-100">
+			<div class="row h-100">
+				<div class="col-lg-4 col-md-12 col-sm-12 mx-auto align-self-center ml-10">
+					<div class="login-form">
+						<div class="text-center">
+							<h3 class="title">Login</h3>
+							<p>Sign in to your account to start using ATM Website</p>
+						</div>
+						<form action="index.html">
+							<div class="mb-4">
+								<label class="mb-1 text-dark">CardCode</label>
+								<input type="text" class="form-control form-control" id="CardCode">
+							</div>
+							<div class="mb-4 position-relative">
+								<label class="mb-1 text-dark">Password</label>
+								<input type="password" id="Password" class="form-control">
+								<span class="show-pass eye">
+
+									<i class="fa fa-eye-slash"></i>
+									<i class="fa fa-eye"></i>
+
+								</span>
+							</div>
+							<div class="form-row d-flex justify-content-between mt-4 mb-2">
+								<div class="mb-4">
+									<div class="form-check custom-checkbox mb-3">
+										<input type="checkbox" class="form-check-input" id="customCheckBox1" required="">
+										<label class="form-check-label" for="customCheckBox1">Remember my preference</label>
+									</div>
+								</div>
+								<div class="mb-4">
+									<a href="page-forgot-password.html" class="btn-link text-primary">Forgot Password?</a>
+								</div>
+							</div>
+							<div class="text-center mb-4">
+								<button type="button" class="btn btn-primary btn-block" id="btnLogin">Login</button>
+							</div>
+							<h6 class="login-title"><span>Or continue with</span></h6>
+							
+							<div class="mb-3 d-flex align-self-center justify-content-center">
+								<a href="https://www.facebook.com/" class="fab fa-facebook-f btn-facebook"></a>
+								<a href="https://www.google.com/" class="fab fa-google-plus-g btn-google-plus mx-2"></a>
+								<a href="https://twitter.com/" class="fab fa-twitter btn-twitter"></a>
+								
+							</div>
+							<p class="text-center">
+								Not registered?
+								<a class="btn-link text-primary" href="page-register.html">Register</a>
+							</p>
+						</form>
+					</div>
+				</div>
+				<div class="col-xl-6 col-lg-6">
+					<div class="pages-left h-100">
+						<div class="login-content text-center">
+							<a href="index.html" ><img src="images/logo.png" class="mb-3 logo-dark" alt=""></a>
+
+							<p>Welcome TTM ATM Website </p>
+						</div>
+						<div class="login-media text-center">
+							<img src="images/login.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+@section scripts {
+	<script>
+		$('#btnLogin').click(function (event) {
+			event.preventDefault();
+
+			var requestModel = {
+				CardCode: $('#CardCode').val(),
+				Password: $('#Password').val(),
+			};
+
+			$.ajax({
+				url: '/login/userlogin',
+				type: 'POST',
+				data: { reqModel: requestModel },
+				dataType: 'json',
+				success: function (data) {
+					showMessage(data, "/login/userview");
+				},
+				error: function (xhr, status, error) {
+					console.error("AJAX Error: " + status + " - " + error);
+
+					// Log or display details from the xhr object
+					console.log("XHR Status: " + xhr.status);
+					console.log("XHR Response Text: " + xhr.responseText);
+
+					showMessage("An error occurred. Please try again.", "/login/index");
+				}
+			});
+		});
+
+	</script>
+}

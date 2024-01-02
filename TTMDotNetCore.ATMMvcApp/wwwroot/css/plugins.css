@@ -1,0 +1,25 @@
+/*=========================
+	All css
+==========================*/
+@import url("../plugins/bootstrap/css/bootstrap.min.css");
+@import url("../plugins/fontawesome/css/font-awesome.min.css");
+@import url("../plugins/flaticon/flaticon.css");
+@import url("../plugins/themify/themify-icons.css");
+@import url("../plugins/owl-carousel/owl.carousel.css");
+@import url("../plugins/bootstrap-select/css/bootstrap-select.min.css");
+@import url("../plugins/magnific-popup/magnific-popup.css");
+@import url("../plugins/lightgallery/css/lightgallery.min.css");
+@import url("../plugins/scroll/scrollbar.css");
+@import url("../plugins/switcher/css/switcher.min.css");
+
+/*=========================
+	All css
+==========================*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900|Open+Sans:300,400,600,700,800|Oswald:200,300,400,500,600,700|Roboto+Slab:100,300,400,700|Roboto:100,300,400,500,700,900&display=swap');
+
+/*
+font-family: 'Montserrat', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Roboto Slab', serif;
+*/
