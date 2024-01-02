@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 
-namespace AEHKLMNSTZDotNetCore.MvcApp.Models
+namespace TTMDotNetCore.WebMVCApp.Models
 {
     public class ChartJsTimeScaleModel
     {

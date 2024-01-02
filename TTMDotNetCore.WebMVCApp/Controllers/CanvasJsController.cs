@@ -1,7 +1,7 @@
-﻿using AEHKLMNSTZDotNetCore.MvcApp.Models;
+﻿using TTMDotNetCore.WebMVCApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AEHKLMNSTZDotNetCore.MvcApp.Controllers
+namespace TTMDotNetCore.WebMVCApp.Controllers
 {
     public class CanvasJsController : Controller
     {

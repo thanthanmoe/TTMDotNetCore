@@ -1,13 +1,13 @@
-using AEHKLMNSTZDotNetCore.MvcApp.Models;
+using TTMDotNetCore.WebMVCApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net.WebSockets;
 ﻿using Microsoft.AspNetCore.Mvc;
-using AEHKLMNSTZDotNetCore.MvcApp.Models;
+using TTMDotNetCore.WebMVCApp.Models;
 using System.Collections.Generic;
-using AEHKLMNSTZDotNetCore.MvcApp.Models;
+using TTMDotNetCore.WebMVCApp.Models;
 
-namespace AEHKLMNSTZDotNetCore.MvcApp.Controllers
+namespace TTMDotNetCore.WebMVCApp.Controllers
 {
     public class HighChartsController : Controller
     {

@@ -1,4 +1,4 @@
-﻿namespace AEHKLMNSTZDotNetCore.MvcApp.Models
+﻿namespace TTMDotNetCore.WebMVCApp.Models
 {
     public class HighChartLineChartModel { 
         public string name { get; set; }

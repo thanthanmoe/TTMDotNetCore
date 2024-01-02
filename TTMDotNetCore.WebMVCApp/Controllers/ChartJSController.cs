@@ -1,8 +1,8 @@
-﻿using AEHKLMNSTZDotNetCore.MvcApp.Models;
+﻿using TTMDotNetCore.WebMVCApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Emit;
 
-namespace AEHKLMNSTZDotNetCore.MvcApp.Controllers
+namespace TTMDotNetCore.WebMVCApp.Controllers
 {
     public class ChartJsController : Controller
     {
