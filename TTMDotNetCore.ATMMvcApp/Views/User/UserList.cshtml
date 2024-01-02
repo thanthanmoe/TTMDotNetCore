@@ -153,21 +153,21 @@
 	
 		$(".btnDelete").click(function () {
 			var _reqModel = {
-				AdminId: $(this).data('admin-id'),
+				UserId: $(this).data('user-id'),
 			};
 
 			confirmMessage("Are you sure want to delete?").then((result) => {
 				if (!result) return;
 
 				$.ajax({
-					url: "/admin/delete",
+					url: "/user/delete",
 					type: "POST",
 					data:
 					{
 						reqModel: _reqModel
 					},
 					success: function (data) {
-						showMessage(data, '/admin/adminlist');
+						showMessage(data, '/user/userlist');
 					},
 					error: function (request, status, error) {
 						console.log({ request, status, error });
