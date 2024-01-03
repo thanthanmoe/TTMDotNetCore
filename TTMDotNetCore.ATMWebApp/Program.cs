@@ -1,4 +1,4 @@
-using TTMDotNetCore.ATMMvcApp.AppDB;
+using TTMDotNetCore.ATMWebApp.AppDB;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

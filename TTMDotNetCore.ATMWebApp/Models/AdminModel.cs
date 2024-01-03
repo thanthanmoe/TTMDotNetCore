@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace TTMDotNetCore.ATMMvcApp.Models
+namespace TTMDotNetCore.ATMWebApp.Models
 {
 	[Table("Tbl_Admin")]
 	public class AdminModel

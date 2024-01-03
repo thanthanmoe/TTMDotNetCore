@@ -1,4 +1,4 @@
-namespace TTMDotNetCore.ATMMvcApp.Models
+namespace TTMDotNetCore.ATMWebApp.Models
 {
     public class ErrorViewModel
     {

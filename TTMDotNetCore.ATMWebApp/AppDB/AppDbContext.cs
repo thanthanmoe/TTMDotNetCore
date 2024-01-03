@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TTMDotNetCore.ATMMvcApp.Models;
-namespace TTMDotNetCore.ATMMvcApp.AppDB
+using TTMDotNetCore.ATMWebApp.Models;
+namespace TTMDotNetCore.ATMWebApp.AppDB
 {
     public class AppDbContext : DbContext
     {

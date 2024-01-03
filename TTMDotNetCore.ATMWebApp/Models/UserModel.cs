@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TTMDotNetCore.ATMMvcApp.Models
+namespace TTMDotNetCore.ATMWebApp.Models
 {
 	[Table("Tbl_User")]
 	public class UserModel

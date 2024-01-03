@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TTMDotNetCore.ATMMvcApp.Models;
-using TTMDotNetCore.ATMMvcApp.AppDB;
+using TTMDotNetCore.ATMWebApp.Models;
+using TTMDotNetCore.ATMWebApp.AppDB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 
-namespace TTMDotNetCore.ATMMvcApp.Controllers
+namespace TTMDotNetCore.ATMWebApp.Controllers
 {
 	public class LoginController : Controller
 	{

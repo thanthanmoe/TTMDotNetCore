@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TTMDotNetCore.ATMMvcApp.Models
+namespace TTMDotNetCore.ATMWebApp.Models
 {
   
     public class MessageModel

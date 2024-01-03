@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using TTMDotNetCore.ATMMvcApp.AppDB;
-using TTMDotNetCore.ATMMvcApp.Models;
+using TTMDotNetCore.ATMWebApp.AppDB;
+using TTMDotNetCore.ATMWebApp.Models;
 
-namespace TTMDotNetCore.ATMMvcApp.Controllers
+namespace TTMDotNetCore.ATMWebApp.Controllers
 {
     public class HomeController : Controller
     {
