@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.WebMVCApp", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.ThemeMvcApp", "TTMDotNetCore.ThemeMvcApp\TTMDotNetCore.ThemeMvcApp.csproj", "{2FE4D95A-5F08-4A59-96EC-299DD458FCCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTMDotNetCore.ATMMvcApp", "TTMDotNetCore.ATMMvcApp\TTMDotNetCore.ATMMvcApp.csproj", "{71E23CE5-BB67-4225-A882-9BA10FDA934F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTMDotNetCore.ATMWebApp", "TTMDotNetCore.ATMWebApp\TTMDotNetCore.ATMWebApp.csproj", "{71E23CE5-BB67-4225-A882-9BA10FDA934F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
