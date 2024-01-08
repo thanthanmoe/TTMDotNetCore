@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
+using System.Xml.Linq;
 
 
 namespace TTMDotNetCore.ConsoleApp.RefitExamples
@@ -52,19 +54,42 @@ namespace TTMDotNetCore.ConsoleApp.RefitExamples
 
         private async Task Edit(int id)
         {
-           
-        }
+			BlogResponseModel model = await blogApi.EditBlog(id);
 
-        private void Update(int id, string title, string author, string content)
+			Console.WriteLine(JsonConvert.SerializeObject(model, Formatting.Indented));
+		}
+
+        private async Task UpdateAsync(int id, string title, string author, string content)
         {
+			BlogResponseModel model = await blogApi.UpdateBlog(id, new BlogDataModel()
+			{
+				Blog_Title = title,
+				Blog_Author = author,
+				Blog_Content = content,
+			});
 
-        }
+			Console.WriteLine(JsonConvert.SerializeObject(model, Formatting.Indented));
+		}
 
-        private void Delete(int id)
+        private async Task DeleteAsync(int id)
         {
+			BlogResponseModel model = await blogApi.DeleteBlog(id);
 
-        }
-    }
+			Console.WriteLine(JsonConvert.SerializeObject(model, Formatting.Indented));
+		}
+
+		private async Task Patch(int id, string title, string author, string content)
+		{
+			BlogResponseModel model = await blogApi.PatchBlog(id, new BlogDataModel()
+			{
+				Blog_Title = title,
+				Blog_Author = author,
+				Blog_Content = content,
+			});
+
+			Console.WriteLine(JsonConvert.SerializeObject(model, Formatting.Indented));
+		}
+	}
 
     public interface IBlogApi
     {
@@ -88,5 +113,6 @@ namespace TTMDotNetCore.ConsoleApp.RefitExamples
 
         [Delete("/api/blog/{id}")]
         Task<BlogResponseModel> DeleteBlog(int id);
-    }
+		Task<BlogResponseModel> EditBlog(int id);
+	}
 }
