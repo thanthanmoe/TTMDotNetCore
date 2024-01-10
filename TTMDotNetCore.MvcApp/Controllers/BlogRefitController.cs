@@ -15,26 +15,26 @@ namespace TTMDotNetCore.MvcApp.Controllers
 		public async Task<IActionResult> Index()
 		{
 			var model = await _blogApi.GetBlogs();
-			TempData["ControllerName"] = "Blogrefit";
+			TempData["ControllerName"] = "BlogRefit";
 			return View(model);
 		}
 
 		public IActionResult CreateForm()
 		{
-			TempData["ControllerName"] = "Blogrefit";
+			TempData["ControllerName"] = "BlogRefit";
 			return View("Create");
 		}
 
 		public async Task<IActionResult> Create(BlogDataModel reqModel)
 		{
 			BlogResponseModel model = await _blogApi.CreateBlog(reqModel);
-			return Redirect("/Blogrefit");
+			return Redirect("/BlogRefit");
 		}
 
 		public async Task<IActionResult> Edit(int id)
 		{
 			BlogResponseModel model = await _blogApi.EditBlog(id);
-			TempData["ControllerName"] = "Blogrefit";
+			TempData["ControllerName"] = "BlogRefit";
 			return View(model);
 		}
 
@@ -42,14 +42,14 @@ namespace TTMDotNetCore.MvcApp.Controllers
 		{
 			BlogResponseModel model = await _blogApi.UpdateBlog(id, reqModel);
 
-			return Redirect("/Blogrefit");
+			return Redirect("/BlogRefit");
 		}
 
 		public async Task<IActionResult> Delete(int id)
 		{
 			BlogResponseModel model = await _blogApi.DeleteBlog(id);
 
-			return Redirect("/Blogrefit");
+			return Redirect("/BlogRefit");
 		}
 
 	}

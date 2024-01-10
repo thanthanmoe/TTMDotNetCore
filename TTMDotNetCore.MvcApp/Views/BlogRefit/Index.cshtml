@@ -1,5 +1,49 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model BlogListResponseModel
 @{
+    int rowCount = 0;
 }
+
+@* @if (TempData["IsSuccess"] != null)
+{
+    bool isSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
+    if (isSuccess)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+} *@
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Action</th>
+            <th scope="col">No.</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Content</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (BlogDataModel item in Model.Data)
+        {
+            <tr>
+                <td>
+                    <a href="/Blog/Edit/@item.Blog_Id" class="btn btn-warning">Edit</a>
+                    <a href="/Blog/Edit?blogId=@item.Blog_Id" class="btn btn-warning">Edit</a>
+                </td>
+                <th scope="row">@(++rowCount)</th>
+                <td>@item.Blog_Title</td>
+                <td>@item.Blog_Author</td>
+                <td>@item.Blog_Content</td>
+            </tr>
+        }
+    </tbody>
+</table> 
