@@ -13,25 +13,22 @@ namespace TTMDotNetCore.ConsoleApp.HttpClientExamples
     {
         public async Task Run()
         {
-            await Read();
-            await Edit(1);
+            //await Read();
             await Create("title", "author", "content");
+            //await Edit(16);
+            //await Updte(16,"title", "author", "content");
+            //await Delete(16);
+
         }
 
         private async Task Read()
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetAsync("http://localhost:7223/api/blog");
+            var response = await client.GetAsync("https://localhost:7253/api/blog");
             if (response.IsSuccessStatusCode)
             {
                 string jsonStr = await response.Content.ReadAsStringAsync();
-                // json to C# object
-                // encode
-                // decode
-                // encrypt
-                // decrypt
-                // SerializeObject => C# to json
-                // DeserializeObject => json to C#
+               
                 BlogListResponseModel model = JsonConvert.DeserializeObject<BlogListResponseModel>(jsonStr);
                 Console.WriteLine(JsonConvert.SerializeObject(model));
                 Console.WriteLine(JsonConvert.SerializeObject(model, Formatting.Indented));
@@ -50,11 +47,13 @@ namespace TTMDotNetCore.ConsoleApp.HttpClientExamples
             HttpContent httpContent = new StringContent(blogJson, Encoding.UTF8, Application.Json);
 
             HttpClient client = new HttpClient();
-            var response = await client.PostAsync($"http://localhost:7223/api/blog", httpContent);
+            var response = await client.PostAsync($"https://localhost:7253/api/blog", httpContent);
             if (response.IsSuccessStatusCode)
             {
+              
                 string jsonStr = await response.Content.ReadAsStringAsync();
                 BlogResponseModel model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
+                await Console.Out.WriteLineAsync(model.Message);
                 Console.WriteLine(JsonConvert.SerializeObject(model));
                 Console.WriteLine(JsonConvert.SerializeObject(model, Formatting.Indented));
             }
@@ -63,7 +62,7 @@ namespace TTMDotNetCore.ConsoleApp.HttpClientExamples
         private async Task Edit(int id)
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetAsync($"http://localhost:7223/api/blog/{id}");
+            var response = await client.GetAsync($"https://localhost:7253/api/blog/{id}");
             if (response.IsSuccessStatusCode)
             {
                 string jsonStr = await response.Content.ReadAsStringAsync();
@@ -85,7 +84,7 @@ namespace TTMDotNetCore.ConsoleApp.HttpClientExamples
 			HttpContent httpContent = new StringContent(jsonBlog, Encoding.UTF8, Application.Json);
 
 			HttpClient client = new HttpClient();
-			HttpResponseMessage response = await client.PutAsync($"https://localhost:7244/api/blog/{id}", httpContent);
+			HttpResponseMessage response = await client.PutAsync($"https://localhost:7253/api/blog/{id}", httpContent);
 			if (response.IsSuccessStatusCode)
 			{
 				string jsonStr = await response.Content.ReadAsStringAsync();
@@ -103,7 +102,7 @@ namespace TTMDotNetCore.ConsoleApp.HttpClientExamples
         private async Task DeleteAsync(int id)
         {
 			HttpClient client = new HttpClient();
-			HttpResponseMessage response = await client.DeleteAsync($"https://localhost:7244/api/blog/{id}");
+			HttpResponseMessage response = await client.DeleteAsync($"https://localhost:7253/api/blog/{id}");
 			if (response.IsSuccessStatusCode)
 			{
 				string jsonStr = await response.Content.ReadAsStringAsync();
