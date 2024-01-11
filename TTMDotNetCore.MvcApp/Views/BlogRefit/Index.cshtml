@@ -1,25 +1,12 @@
-﻿@model BlogListResponseModel
+﻿@model BlogResponseModels
 @{
     int rowCount = 0;
+    string controllerName=null;
+    if (TempData["ControllerName"] != null)
+    {
+         controllerName = TempData["ControllerName"].ToString();
+    }
 }
-
-@* @if (TempData["IsSuccess"] != null)
-{
-    bool isSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
-    if (isSuccess)
-    {
-        <div class="alert alert-success" role="alert">
-            @TempData["Message"]
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-danger" role="alert">
-            @TempData["Message"]
-        </div>
-    }
-} *@
-
 
 <table class="table">
     <thead>
@@ -35,9 +22,10 @@
         @foreach (BlogDataModel item in Model.Data)
         {
             <tr>
+
                 <td>
-                    <a href="/Blog/Edit/@item.Blog_Id" class="btn btn-warning">Edit</a>
-                    <a href="/Blog/Edit?blogId=@item.Blog_Id" class="btn btn-warning">Edit</a>
+                    <a href="/@controllerName/Edit/@item.Blog_Id" class="btn btn-warning">Edit</a>
+                    <a href="/@controllerName/Delete?id=@item.Blog_Id" class="btn btn-warning">Delete</a>
                 </td>
                 <th scope="row">@(++rowCount)</th>
                 <td>@item.Blog_Title</td>
