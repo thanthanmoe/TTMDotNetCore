@@ -16,22 +16,52 @@ namespace TTMDotNetCore.ConsoleApp.RestClientExamples
         public async Task Run()
         {
             await Read();
-            await Edit(1);
-            await Create("title", "author", "content");
+            //await Edit(16);
+            //await Updte(16,"title", "author", "content");
+            //await Create("title", "author", "content");
+            //await Delete(16);
         }
 
         private async Task Read()
         {
+            RestRequest request = new RestRequest("https://localhost:7253/api/blog", Method.Get);
             RestClient client = new RestClient();
-            RestRequest request = new RestRequest("http://localhost:7223/api/blog", Method.Get);
             //await client.GetAsync(request);
-            RestResponse response = await client.ExecuteAsync(request);
+            var response = await client.ExecuteAsync(request);
             if (response.IsSuccessStatusCode)
             {
-                string jsonStr =  response.Content;
-                BlogListResponseModel model = JsonConvert.DeserializeObject<BlogListResponseModel>(jsonStr);
-                Console.WriteLine(JsonConvert.SerializeObject(model));
-                Console.WriteLine(JsonConvert.SerializeObject(model, Formatting.Indented));
+                string jsonStr = response.Content!;
+                var model = JsonConvert.DeserializeObject<BlogListResponseModel>(jsonStr);
+                foreach (var item in model!.Data)
+                {
+                    Console.WriteLine(item.Blog_Id);
+                    Console.WriteLine(item.Blog_Title);
+                    Console.WriteLine(item.Blog_Author);
+                    Console.WriteLine(item.Blog_Content);
+                }
+            }
+        }
+
+        private async Task Edit(int id)
+        {
+            RestRequest request = new RestRequest($"https://localhost:7253/api/blog/{id}", Method.Get);
+            RestClient client = new RestClient();
+            var response = await client.ExecuteAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonStr = response.Content!;
+                var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
+                var item = model!.Data;
+                Console.WriteLine(item.Blog_Id);
+                Console.WriteLine(item.Blog_Title);
+                Console.WriteLine(item.Blog_Author);
+                Console.WriteLine(item.Blog_Content);
+            }
+            else
+            {
+                string jsonStr = response.Content!;
+                var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
+                Console.WriteLine(model!.Message);
             }
         }
 
@@ -39,80 +69,65 @@ namespace TTMDotNetCore.ConsoleApp.RestClientExamples
         {
             BlogDataModel blog = new BlogDataModel
             {
+                Blog_Title = title,
                 Blog_Author = author,
-                Blog_Content = content,
-                Blog_Title = title
+                Blog_Content = content
             };
+            RestRequest request = new RestRequest("https://localhost:7253/api/blog", Method.Post);
+            request.AddJsonBody(blog);
             RestClient client = new RestClient();
-            RestRequest request = new RestRequest("http://localhost:7223/api/blog", Method.Post);
-            request.AddBody(blog);
-            RestResponse response = await client.ExecuteAsync(request);
+            var response = await client.ExecuteAsync(request);
             if (response.IsSuccessStatusCode)
             {
-                string jsonStr = response.Content;
-                BlogResponseModel model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
-                Console.WriteLine(JsonConvert.SerializeObject(model));
-                Console.WriteLine(JsonConvert.SerializeObject(model, Formatting.Indented));
+                string jsonStr = response.Content!;
+                var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
+                await Console.Out.WriteLineAsync(model.Message);
             }
         }
 
-        private async Task Edit(int id)
+        private async Task Update(int id, string title, string author, string content)
         {
+            BlogDataModel blog = new BlogDataModel
+            {
+                Blog_Title = title,
+                Blog_Author = author,
+                Blog_Content = content
+            };
+            RestRequest request = new RestRequest($"https://localhost:7253/api/blog/{id}", Method.Put);
+            request.AddJsonBody(blog);
             RestClient client = new RestClient();
-            RestRequest request = new RestRequest($"https://localhost:7098/api/blog/{id}", Method.Get);
-            RestResponse response = await client.ExecuteAsync(request);
+            var response = await client.ExecuteAsync(request);
             if (response.IsSuccessStatusCode)
             {
-                string jsonStr = response.Content;
-                BlogResponseModel model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
-                Console.WriteLine(JsonConvert.SerializeObject(model));
-                Console.WriteLine(JsonConvert.SerializeObject(model, Formatting.Indented));
+                string jsonStr = response.Content!;
+                var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
+                await Console.Out.WriteLineAsync(model!.Message);
+            }
+            else
+            {
+                string jsonStr = response.Content!;
+                var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
+                Console.WriteLine(model!.Message);
             }
         }
 
-        private async Task UpdateAsync(int id, string title, string author, string content)
+        private async Task Delete(int id)
         {
-			BlogDataModel blog = new BlogDataModel
-			{
-				Blog_Title = title,
-				Blog_Author = author,
-				Blog_Content = content
-			};
-			string jsonBlog = JsonConvert.SerializeObject(blog);
-			HttpContent httpContent = new StringContent(jsonBlog, Encoding.UTF8, Application.Json);
-
-			HttpClient client = new HttpClient();
-			HttpResponseMessage response = await client.PutAsync($"https://localhost:7244/api/blog/{id}", httpContent);
-			if (response.IsSuccessStatusCode)
-			{
-				string jsonStr = await response.Content.ReadAsStringAsync();
-				var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
-				await Console.Out.WriteLineAsync(model.Message);
-			}
-			else
-			{
-				string jsonStr = await response.Content.ReadAsStringAsync();
-				var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
-				Console.WriteLine(model.Message);
-			}
-		}
-
-        private async Task DeleteAsync(int id)
-        {
-			HttpClient client = new HttpClient();
-			HttpResponseMessage response = await client.DeleteAsync($"https://localhost:7244/api/blog/{id}");
-			if (response.IsSuccessStatusCode)
-			{
-				string jsonStr = await response.Content.ReadAsStringAsync();
-				var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
-				Console.WriteLine(model.Message);
-			}
-			else
-			{
-				string jsonStr = await response.Content.ReadAsStringAsync();
-				var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
-				Console.WriteLine(model.Message);
-			}
-		}
+            RestRequest request = new RestRequest($"https://localhost:7253/api/blog/{id}", Method.Delete);
+            RestClient client = new RestClient();
+            var response = await client.ExecuteAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonStr = response.Content!;
+                var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
+                Console.WriteLine(model!.Message);
+            }
+            else
+            {
+                string jsonStr = response.Content!;
+                var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
+                Console.WriteLine(model!.Message);
+            }
+        }
     }
 }

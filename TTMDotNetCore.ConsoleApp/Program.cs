@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using TTMDotNetCore.ConsoleApp.AdoDotNetCoreExamples;
 using TTMDotNetCore.ConsoleApp.DrapperExamples;
 using TTMDotNetCore.ConsoleApp.HttpClientExamples;
+using TTMDotNetCore.ConsoleApp.RestClientExamples;
 
 namespace TTMDotNetCore.ConsoleApp
 {
@@ -24,17 +25,23 @@ namespace TTMDotNetCore.ConsoleApp
             // Ctrl + R, R => Rename
             // F10 => summary trace
             // F11 => detail trace
+            Console.WriteLine("Please wait for api...");
+            Console.ReadKey();
 
             /* AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
              adoDotNetExample.Run();*/
             /* DrapperExample drapperExample = new DrapperExample();
              drapperExample.Run();*/
-            Console.WriteLine("waiting for api... ");
-            Console.ReadKey();
-            RefitExample httpClientExample = new RefitExample();
-            await httpClientExample.Run();
+            //Console.WriteLine("waiting for api... ");
+            //Console.ReadKey();
+            //RefitExample httpClientExample = new RefitExample();
+            //await httpClientExample.Run();
 
-            Console.WriteLine("Press any key to continue... ");
+            //HttpClientExample httpClientExample = new HttpClientExample();
+            //await httpClientExample.Run();
+            RestClientExample restClientExample = new RestClientExample();
+            await restClientExample.Run();
+            //Console.WriteLine("Press any key to continue... ");
             Console.ReadKey();
             //Console.ReadLine();
 
