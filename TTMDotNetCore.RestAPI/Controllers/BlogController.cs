@@ -10,93 +10,112 @@ namespace TTMDotNetCore.WebAPI.Controllers
     [ApiController]
     public class BlogController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Read()
+        private readonly AppDbContext _context;
+        public BlogController(AppDbContext context)
         {
-           AppDbContext db = new AppDbContext();
-            var list = db.Blogs.ToList();
-            BlogListResponseModel model = new BlogListResponseModel()
+            _context = context;
+        }
+
+        [HttpGet]
+        public IActionResult GetBlogs()
+        {
+            List<BlogDataModel> lst = _context.Blogs.ToList();
+            BlogResponseModels model = new BlogResponseModels()
             {
                 IsSuccess = true,
                 Message = "Success",
-                Data = list
+                //Data = lst.Where(x => x.Blog_Title == "").OrderByDescending(x => x.Blog_Id).ToList()
+                Data = lst
             };
             return Ok(model);
         }
-       
-        [HttpPost]
-        public IActionResult Create([FromBody] BlogDataModel blog)
+
+        [HttpGet("{pageNo}/{pageSize}")]
+        public IActionResult GetBlogs(int pageNo = 1, int pageSize = 10)
         {
-            AppDbContext db = new AppDbContext();
-            db.Blogs.Add(blog);
-            var result=db.SaveChanges();
-            string message = result > 0 ? "Saving Successfully" : "Saving Fail";
-            BlogResponseModel model = new BlogResponseModel()
-            {
-                IsSuccess = result >0,
-                Message = message,
-                Data = blog
-            };
-            return Ok(model);
-        }
-        [HttpGet("{id}")]
-        public IActionResult Edit(int id)
-        {
-            AppDbContext db = new AppDbContext();
-            BlogResponseModel model = new BlogResponseModel();
-            BlogDataModel item = db.Blogs.FirstOrDefault(x => x.Blog_Id == id);
             
+            List<BlogDataModel> lst = _context
+                .Blogs
+                .Skip((pageNo - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+            BlogResponseModels model = new BlogResponseModels()
+            {
+                IsSuccess = true,
+                Message = "Success",
+                //Data = lst.Where(x => x.Blog_Title == "").OrderByDescending(x => x.Blog_Id).ToList()
+                Data = lst
+            };
+            return Ok(model);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetBlog(int id)
+        {
+            BlogResponseModel model = new BlogResponseModel();
+
+            BlogDataModel item = _context.Blogs.FirstOrDefault(x => x.Blog_Id == id);
             if (item is null)
             {
-
                 model.IsSuccess = false;
-                model.Message = "This Id is not found";
-                model.Data = item;
+                model.Message = "No data found.";
                 return NotFound(model);
-               
             }
 
             model.IsSuccess = true;
             model.Message = "Success";
             model.Data = item;
-            
             return Ok(model);
         }
-        [HttpPut("{id}")]
-        public IActionResult Update(int id,[FromBody] BlogDataModel blog)
+
+        [HttpPost]
+        public IActionResult CreateBlog([FromBody] BlogDataModel blog)
         {
-            AppDbContext db = new AppDbContext();
-            BlogResponseModel model = new BlogResponseModel();
-            BlogDataModel item = db.Blogs.FirstOrDefault(x => x.Blog_Id == id);
-
-            if (item is null)
+            _context.Blogs.Add(blog);
+            var result = _context.SaveChanges();
+            string message = result > 0 ? "Saving Successful." : "Saving Failed.";
+            BlogResponseModel model = new BlogResponseModel()
             {
+                IsSuccess = result > 0,
+                Message = message,
+            };
+            return Ok(model);
+        }
 
+        [HttpPut("{id}")]
+        public IActionResult UpdateBlog(int id, [FromBody] BlogDataModel blog)
+        {
+            BlogResponseModel model = new BlogResponseModel();
+
+            BlogDataModel item = _context.Blogs.FirstOrDefault(x => x.Blog_Id == id);
+            if (item == null)
+            {
                 model.IsSuccess = false;
-                model.Message = "This Id is not found";
-                model.Data = item;
+                model.Message = "No data found.";
                 return NotFound(model);
-
             }
-            
+
             item.Blog_Title = blog.Blog_Title;
             item.Blog_Author = blog.Blog_Author;
             item.Blog_Content = blog.Blog_Content;
 
-            var result = db.SaveChanges();
-            string message = result > 0 ? "Update Successfully" : "Update Fail";
-            model.IsSuccess = true;
-            model.Message = message;
-            model.Data = blog;
+            var result = _context.SaveChanges();
+            string message = result > 0 ? "Updating Successful." : "Updating Failed.";
+
+            model = new BlogResponseModel()
+            {
+                IsSuccess = result > 0,
+                Message = message,
+            };
             return Ok(model);
         }
 
+        
         [HttpPatch("{id}")]
-        public IActionResult PatchBlog(int id, [FromBody] BlogDataModel blog)
+        public IActionResult EditBlog(int id, [FromBody] BlogDataModel blog)
         {
             BlogResponseModel model = new BlogResponseModel();
-            AppDbContext db = new AppDbContext();
-            var item = db.Blogs.FirstOrDefault(x => x.Blog_Id == id);
+            var item = _context.Blogs.FirstOrDefault(x => x.Blog_Id == id);
 
             if (item is null)
             {
@@ -118,7 +137,7 @@ namespace TTMDotNetCore.WebAPI.Controllers
                 item.Blog_Content = blog.Blog_Content;
             }
 
-            var result = db.SaveChanges();
+            var result = _context.SaveChanges();
             string message = result > 0 ? "Updating Successful." : "Updating Failed.";
 
             model = new BlogResponseModel()
@@ -133,8 +152,7 @@ namespace TTMDotNetCore.WebAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteBlog(int id)
         {
-            AppDbContext db = new AppDbContext();
-            var blog = db.Blogs.FirstOrDefault(b => b.Blog_Id == id);
+            var blog = _context.Blogs.FirstOrDefault(b => b.Blog_Id == id);
 
             BlogResponseModel data = new BlogResponseModel();
             if (blog is null)
@@ -144,12 +162,11 @@ namespace TTMDotNetCore.WebAPI.Controllers
                 return NotFound(data);
             }
 
-            db.Blogs.Remove(blog);
-            db.SaveChanges();
+            _context.Blogs.Remove(blog);
+            _context.SaveChanges();
             data.IsSuccess = true;
             data.Message = "Success";
             return Ok(data);
         }
     }
 }
-
