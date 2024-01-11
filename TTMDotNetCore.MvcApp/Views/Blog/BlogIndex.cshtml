@@ -3,26 +3,6 @@
     int rowCount = 0;
 }
 
-@* @if (TempData["IsSuccess"] != null)
-{
-    bool isSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
-    if (isSuccess)
-    {
-        <div class="alert alert-success" role="alert">
-            @TempData["Message"]
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-danger" role="alert">
-            @TempData["Message"]
-        </div>
-    }
-} *@
-
-<partial name="_ValidateMessage" />
-<p>Page Count : @Model.PageCount</p>
-<p>Page Row Count : @Model.PageRowCount</p>
 <table class="table">
     <thead>
         <tr>
@@ -39,7 +19,7 @@
             <tr>
                 <td>
                     <a href="/Blog/Edit/@item.Blog_Id" class="btn btn-warning">Edit</a>
-                    <a href="/Blog/Edit?blogId=@item.Blog_Id" class="btn btn-warning">Edit</a>
+                    <a href="/Blog/Edit?blogId=@item.Blog_Id" class="btn btn-warning">Delete</a>
                 </td>
                 <th scope="row">@(++rowCount)</th>
                 <td>@item.Blog_Title</td>
