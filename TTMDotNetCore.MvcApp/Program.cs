@@ -1,16 +1,45 @@
 using Microsoft.EntityFrameworkCore;
+using Refit;
+using RestSharp;
 using TTMDotNetCore.MvcApp.AppDB;
+using TTMDotNetCore.MvcApp.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<AppDbContext>(opt =>
+builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
+    string? connectionString = builder.Configuration.GetConnectionString("DbConnection");
+    options.UseSqlServer(connectionString);
 },
 ServiceLifetime.Transient,
 ServiceLifetime.Transient);
+
+#region Refit
+
+builder.Services
+    .AddRefitClient<IBlogApi>()
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration.GetSection("RestApiUrl").Value!));
+
+#endregion
+
+#region HttpClient
+
+//builder.Services.AddScoped<HttpClient>();
+builder.Services.AddScoped(x => new HttpClient
+{
+    BaseAddress = new Uri(builder.Configuration.GetSection("RestApiUrl").Value!)
+});
+
+#endregion
+
+#region RestClient
+
+builder.Services.AddScoped(x => new RestClient(builder.Configuration.GetSection("RestApiUrl").Value!));
+
+#endregion
 
 var app = builder.Build();
 

@@ -18,52 +18,44 @@ namespace TTMDotNetCore.MvcApp.Controllers
 		public async Task<IActionResult> Index()
 		{
 
-			BlogListResponseModel model = new BlogListResponseModel();
-			RestRequest request = new RestRequest("/api/Blog", Method.Get);
-			//RestResponse response = await client.GetAsync(request);
-			RestResponse response = await _restClient.ExecuteAsync(request);
+			BlogResponseModels model = new BlogResponseModels();
+			RestRequest request = new RestRequest("/api/Blog", Method.Get); //RestResponse response = await client.GetAsync(request);
+            RestResponse response = await _restClient.ExecuteAsync(request);
 
 			if (response.IsSuccessStatusCode)
 			{
 				string jsonStr = response.Content!;
-				//Json to C# object
-				//SearilizeObject => C# to json
-				//DeserilizeObject => json to C#
-				model = JsonConvert.DeserializeObject<BlogListResponseModel>(jsonStr)!;
+				model = JsonConvert.DeserializeObject<BlogResponseModels>(jsonStr)!;
 			}
 
 			TempData["ControllerName"] = "BlogRestClient";
 			return View("~/Views/BlogRefit/Index.cshtml", model);
 		}
 
-		public IActionResult CreateForm()
+		public IActionResult Create()
 		{
 			TempData["ControllerName"] = "BlogRestClient";
 			return View("~/Views/BlogRefit/Create.cshtml");
 		}
 
-		public async Task<IActionResult> Create(BlogDataModel reqModel)
+		public async Task<IActionResult> Save(BlogDataModel reqModel)
 		{
 			RestRequest request = new RestRequest("/api/Blog", Method.Post);
 			request.AddBody(reqModel);
 			RestResponse response = await _restClient.ExecuteAsync(request);
-
-			return Redirect("/BlogRestClient");
+            TempData["ControllerName"] = "BlogRestClient";
+            return Redirect("/BlogRestClient");
 		}
 
 		public async Task<IActionResult> Edit(int id)
 		{
 			BlogResponseModel model = new BlogResponseModel();
 			RestRequest request = new RestRequest($"/api/Blog/{id}", Method.Get);
-			//RestResponse response = await client.GetAsync(request);
 			RestResponse response = await _restClient.ExecuteAsync(request);
 
 			if (response.IsSuccessStatusCode)
 			{
 				string jsonStr = response.Content!;
-				//Json to C# object
-				//SearilizeObject => C# to json
-				//DeserilizeObject => json to C#
 				model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr)!;
 				Console.WriteLine(JsonConvert.SerializeObject(model, Newtonsoft.Json.Formatting.Indented));
 			}
@@ -84,7 +76,6 @@ namespace TTMDotNetCore.MvcApp.Controllers
 		public async Task<IActionResult> Delete(int id)
 		{
 			RestRequest request = new RestRequest($"/api/Blog/{id}", Method.Delete);
-			//RestResponse response = await client.GetAsync(request);
 			RestResponse response = await _restClient.ExecuteAsync(request);
 
 			return Redirect("/BlogRestClient");
