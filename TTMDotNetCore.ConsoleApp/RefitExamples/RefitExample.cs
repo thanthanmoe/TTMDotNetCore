@@ -18,12 +18,16 @@ namespace TTMDotNetCore.ConsoleApp.RefitExamples
 
         public RefitExample()
         {
-            blogApi = RestService.For<IBlogApi>("http://localhost:7223");
+            blogApi = RestService.For<IBlogApi>("https://localhost:7253");
         }
 
         public async Task Run()
         {
             await Read();
+            //await Edit(16);
+            //await Updte(16,"title", "author", "content");
+            //await Create("title", "author", "content");
+            //await Delete(16);
         }
 
         private async Task Read()
@@ -59,7 +63,7 @@ namespace TTMDotNetCore.ConsoleApp.RefitExamples
 			Console.WriteLine(JsonConvert.SerializeObject(model, Formatting.Indented));
 		}
 
-        private async Task UpdateAsync(int id, string title, string author, string content)
+        private async Task Update(int id, string title, string author, string content)
         {
 			BlogResponseModel model = await blogApi.UpdateBlog(id, new BlogDataModel()
 			{
@@ -71,7 +75,7 @@ namespace TTMDotNetCore.ConsoleApp.RefitExamples
 			Console.WriteLine(JsonConvert.SerializeObject(model, Formatting.Indented));
 		}
 
-        private async Task DeleteAsync(int id)
+        private async Task Delete(int id)
         {
 			BlogResponseModel model = await blogApi.DeleteBlog(id);
 
@@ -89,30 +93,5 @@ namespace TTMDotNetCore.ConsoleApp.RefitExamples
 
 			Console.WriteLine(JsonConvert.SerializeObject(model, Formatting.Indented));
 		}
-	}
-
-    public interface IBlogApi
-    {
-        [Get("/api/blog")]
-        Task<BlogListResponseModel> GetBlogs();
-
-        [Get("/api/blog/{pageNo}/{pageSize}")]
-        Task<BlogListResponseModel> GetBlogs(int pageNo, int pageSize = 10);
-
-        [Get("/api/blog/{id}")]
-        Task<BlogResponseModel> GetBlog(int id);
-
-        [Post("/api/blog")]
-        Task<BlogResponseModel> CreateBlog(BlogDataModel blog);
-
-        [Put("/api/blog/{id}")]
-        Task<BlogResponseModel> UpdateBlog(int id, BlogDataModel blog);
-
-        [Patch("/api/blog/{id}")]
-        Task<BlogResponseModel> PatchBlog(int id, BlogDataModel blog);
-
-        [Delete("/api/blog/{id}")]
-        Task<BlogResponseModel> DeleteBlog(int id);
-		Task<BlogResponseModel> EditBlog(int id);
 	}
 }
