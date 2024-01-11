@@ -10,8 +10,8 @@ namespace TTMDotNetCore.ConsoleApp.AdoDotNetCoreExamples
     {
         private readonly SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
         {
-            DataSource = "DESKTOP-F40FPLH",
-            InitialCatalog = "AHMTZDotNetCore",
+            DataSource = ".",
+            InitialCatalog = "TestDb",
             UserID = "sa",
             Password = "sasa"
         };
@@ -29,7 +29,7 @@ namespace TTMDotNetCore.ConsoleApp.AdoDotNetCoreExamples
 
         private void Read()
         {
-            string query = "select * from tbl_blog";
+            string query = "select * from Tbl_Blog";
            
             SqlConnection connection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString);
             connection.Open();
@@ -86,7 +86,7 @@ namespace TTMDotNetCore.ConsoleApp.AdoDotNetCoreExamples
         }
         private void Edit(int id)
         {
-            string query = "select * from tbl_blog where Blog_Id = @BlogId;";
+            string query = "select * from Tbl_Blog where Blog_Id = @BlogId;";
 
             SqlConnection connection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString);
             connection.Open();
@@ -137,7 +137,7 @@ namespace TTMDotNetCore.ConsoleApp.AdoDotNetCoreExamples
         }
         private void Delete(int id)
         {
-            string checkQuery = "select * from tbl_blog where Blog_Id = @BlogId;";
+            string checkQuery = "select * from Tbl_Blog where Blog_Id = @BlogId;";
             string query = $@"Delete from [dbo].[Tbl_Blog] Where Blog_Id = @Blog_Id";
 
             SqlConnection connection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString);
