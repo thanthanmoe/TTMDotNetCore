@@ -42,20 +42,20 @@ namespace TTMDotNetCore.WebAPI.Controllers
         {
             string query = "SELECT * FROM [Tbl_Blog] WHERE [Blog_Id] = @Blog_Id";
 
-            BlogDataModel student = new BlogDataModel()
+            BlogDataModel blog = new BlogDataModel()
             {
                 Blog_Id = id,
             };
 
             using IDbConnection db = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
-            BlogDataModel item = db.Query<BlogDataModel>(query, student).FirstOrDefault();
+            BlogDataModel item = db.Query<BlogDataModel>(query, blog).FirstOrDefault();
 
             BlogResponseModel model = new BlogResponseModel();
             if (item == null)
             {
                 model.IsSuccess = false;
                 model.Message = "No Data Found!!";
-                model.Data = student;
+                model.Data = blog;
                 return NotFound(model);
             }
 

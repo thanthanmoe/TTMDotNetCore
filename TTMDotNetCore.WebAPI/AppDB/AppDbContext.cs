@@ -8,8 +8,8 @@ namespace TTMDotNetCore.WebAPI.AppDB
     {
         private readonly SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
         {
-            DataSource = "DESKTOP-F40FPLH",
-            InitialCatalog = "AHMTZDotNetCore",
+            DataSource = ".",
+            InitialCatalog = "TestDb",
             UserID = "sa",
             Password = "sasa",
             Encrypt=true,

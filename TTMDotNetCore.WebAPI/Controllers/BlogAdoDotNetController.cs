@@ -20,7 +20,7 @@ namespace TTMDotNetCore.WebAPI.Controllers
         [HttpGet]
         public IActionResult GetBlogs()
         {
-            string query = "select * from tbl_blog";
+            string query = "select * from Tbl_Blog";
 
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             connection.Open();
