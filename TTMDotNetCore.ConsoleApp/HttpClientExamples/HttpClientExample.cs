@@ -72,7 +72,7 @@ namespace TTMDotNetCore.ConsoleApp.HttpClientExamples
             }
         }
 
-        private async Task UpdateAsync(int id, string title, string author, string content)
+        private async Task Update(int id, string title, string author, string content)
         {
 			BlogDataModel blog = new BlogDataModel
 			{
@@ -99,7 +99,7 @@ namespace TTMDotNetCore.ConsoleApp.HttpClientExamples
 			}
 		}
 
-        private async Task DeleteAsync(int id)
+        private async Task Delete(int id)
         {
 			HttpClient client = new HttpClient();
 			HttpResponseMessage response = await client.DeleteAsync($"https://localhost:7253/api/blog/{id}");
