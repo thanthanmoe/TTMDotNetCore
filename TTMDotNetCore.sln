@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.WebMVCApp", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.ThemeMvcApp", "TTMDotNetCore.ThemeMvcApp\TTMDotNetCore.ThemeMvcApp.csproj", "{2FE4D95A-5F08-4A59-96EC-299DD458FCCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTMDotNetCore.ATMWebApp", "TTMDotNetCore.ATMWebApp\TTMDotNetCore.ATMWebApp.csproj", "{71E23CE5-BB67-4225-A882-9BA10FDA934F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.ATMWebApp", "TTMDotNetCore.ATMWebApp\TTMDotNetCore.ATMWebApp.csproj", "{71E23CE5-BB67-4225-A882-9BA10FDA934F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTMDotNetCore.MinimalApi", "TTMDotNetCore.MinimalApi\TTMDotNetCore.MinimalApi.csproj", "{5E4A35A5-C2DF-48F4-93DF-AB886AB2CDDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{71E23CE5-BB67-4225-A882-9BA10FDA934F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71E23CE5-BB67-4225-A882-9BA10FDA934F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71E23CE5-BB67-4225-A882-9BA10FDA934F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E4A35A5-C2DF-48F4-93DF-AB886AB2CDDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E4A35A5-C2DF-48F4-93DF-AB886AB2CDDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E4A35A5-C2DF-48F4-93DF-AB886AB2CDDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E4A35A5-C2DF-48F4-93DF-AB886AB2CDDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
