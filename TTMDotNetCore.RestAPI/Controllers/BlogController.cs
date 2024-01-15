@@ -199,6 +199,7 @@ namespace TTMDotNetCore.WebAPI.Controllers
 
             model = new BlogResponseModel()
             {
+                Data = item,
                 IsSuccess = result > 0,
                 Message = message,
             };
