@@ -168,5 +168,42 @@ namespace TTMDotNetCore.WebAPI.Controllers
             data.Message = "Success";
             return Ok(data);
         }
+
+        [HttpPatch("{id}")]
+        public IActionResult PatchBlog(int id, [FromBody] BlogDataModel blog)
+        {
+            BlogResponseModel model = new BlogResponseModel();
+
+            BlogDataModel item = _context.Blogs.FirstOrDefault(x => x.Blog_Id == id);
+            if (item == null)
+            {
+                model.IsSuccess = false;
+                model.Message = "No data found.";
+                return NotFound(model);
+            }
+            if (!string.IsNullOrWhiteSpace(blog.Blog_Title))
+            {
+                item.Blog_Title = blog.Blog_Title;
+            }
+            if (!string.IsNullOrWhiteSpace(blog.Blog_Author))
+            {
+                item.Blog_Author = blog.Blog_Author;
+            }
+            if (!string.IsNullOrWhiteSpace(blog.Blog_Content))
+            {
+                item.Blog_Content = blog.Blog_Content;
+            }
+          
+            var result = _context.SaveChanges();
+            string message = result > 0 ? "Updating Successful." : "Updating Failed.";
+
+            model = new BlogResponseModel()
+            {
+                IsSuccess = result > 0,
+                Message = message,
+            };
+            return Ok(model);
+        }
+
     }
 }
