@@ -38,21 +38,26 @@ namespace TTMDotNetCore.MinimalApi.Features.Blog
            .WithName("CreateBlog")
            .WithOpenApi();
 
-            app.MapPut("/blog/{id}", async ([FromServices] AppDbContext db, int id, BlogDataModel updatedBlog) =>
+            app.MapPut("/blog/{id}", async ([FromServices] AppDbContext db, int id, BlogDataModel reqBlog) =>
             {
-                var existingBlog = await db.Blogs.FindAsync(id);
+                var model = await db.Blogs.FindAsync(id);
 
-                if (existingBlog == null)
+                if (model == null)
                 {
                     return Results.NotFound($"Blog with ID {id} not found.");
                 }
+
+
+                model.Blog_Title = reqBlog.Blog_Title;
+                model.Blog_Author = reqBlog.Blog_Author;
+                model.Blog_Content = reqBlog.Blog_Content;
 
                 int result = await db.SaveChangesAsync();
 
                 string message = result > 0 ? "Update Successful." : "Update Failed.";
                 return Results.Ok(new BlogResponseModel
                 {
-                    Data = existingBlog,
+                    Data = model,
                     IsSuccess = result > 0,
                     Message = message
                 });
@@ -60,17 +65,37 @@ namespace TTMDotNetCore.MinimalApi.Features.Blog
             .WithName("UpdateBlog")
             .WithOpenApi();
 
-            app.MapPatch("/blog/{id}", async ([FromServices] AppDbContext db, int id) =>
+            app.MapPatch("/blog/{id}", async ([FromServices] AppDbContext db, int id, BlogDataModel reqBlog) =>
             {
-                var existingBlog = await db.Blogs.FindAsync(id);
+                var model = await db.Blogs.FindAsync(id);
 
-                string message = existingBlog ==null ? "Blog  ID not found." : " This blog Is found .";
-                var result = existingBlog == null ? false : true ;
+                if (model == null)
+                {
+                    return Results.NotFound(new BlogResponseModel
+                    {
+                        
+                        IsSuccess = false,
+                        Message = "This Blog Is Not Found!"
+                    });
+                }
+                if (!string.IsNullOrWhiteSpace(reqBlog.Blog_Title))
+                {
+                    model.Blog_Title = reqBlog.Blog_Title;
+                }
+                if (!string.IsNullOrWhiteSpace(reqBlog.Blog_Author))
+                {
+                    model.Blog_Author = reqBlog.Blog_Author;
+                }
+                if (!string.IsNullOrWhiteSpace(reqBlog.Blog_Content))
+                {
+                    model.Blog_Content = reqBlog.Blog_Content;
+                }
+                int result = await db.SaveChangesAsync();
                 return Results.Ok(new BlogResponseModel
                 {
-                    Data = existingBlog,
-                    IsSuccess = result,
-                    Message = message
+                    Data = model,
+                    IsSuccess = result > 0,
+                    Message = "Successfully.."
                 });
             })
             .WithName("PatchBlog")
