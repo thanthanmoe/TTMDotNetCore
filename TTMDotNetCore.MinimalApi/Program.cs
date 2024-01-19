@@ -4,7 +4,19 @@ using System.Text.Json.Serialization;
 using TTMDotNetCore.MinimalApi.AppDB;
 using TTMDotNetCore.MinimalApi.Features.Blog;
 
-var builder = WebApplication.CreateBuilder(args);
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/myapp.txt", rollingInterval: RollingInterval.Hour, fileSizeLimitBytes: 1024)
+    .CreateLogger();
+
+try
+{
+    Log.Information("Starting web application");
+
+    var builder = WebApplication.CreateBuilder(args);
+
+    builder.Host.UseSerilog();
+
 
 builder.Services.Configure<JsonOptions>(options =>
 {
@@ -39,3 +51,12 @@ app.UseHttpsRedirection();
 app.AddBlogService();
 
 app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
+}
