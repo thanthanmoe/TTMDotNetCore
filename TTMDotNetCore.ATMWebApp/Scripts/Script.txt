@@ -1,0 +1,57 @@
+﻿CREATE TABLE [dbo].[Tbl_Admin](
+	[AdminId] [int] IDENTITY(1,1) NOT NULL,
+	[FullName] [nvarchar](50) NOT NULL,
+	[NRCNo] [nvarchar](50) NOT NULL,
+	[PhoneNo] [nvarchar](50) NOT NULL,
+	[Address] [nvarchar](50) NOT NULL,
+	[Password] [nvarchar](50) NOT NULL,
+	[StaffId] [nvarchar](50) NOT NULL,
+	[Email] [nvarchar](50) NOT NULL,
+	[Active] [bit] NOT NULL,
+ CONSTRAINT [PK_Tbl_Admin] PRIMARY KEY CLUSTERED 
+(
+	[AdminId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[Tbl_User](
+	[UserId] [int] IDENTITY(1,1) NOT NULL,
+	[FullName] [nvarchar](50) NOT NULL,
+	[NRCNo] [nvarchar](50) NOT NULL,
+	[PhoneNo] [nvarchar](50) NOT NULL,
+	[Address] [nvarchar](50) NOT NULL,
+	[Password] [nvarchar](50) NOT NULL,
+	[CardCode] [nvarchar](50) NOT NULL,
+	[Email] [nvarchar](50) NOT NULL,
+	[CardType] [nvarchar](50) NOT NULL,
+	[CurrentBalance] [decimal](18, 4) NOT NULL,
+	[Active] [bit] NULL,
+ CONSTRAINT [PK_Tbl_User] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+GO
+SET IDENTITY_INSERT [dbo].[Tbl_Admin] ON 
+
+INSERT [dbo].[Tbl_Admin] ([AdminId], [FullName], [NRCNo], [PhoneNo], [Address], [Password], [StaffId], [Email], [Active]) VALUES (4, N'111111', N'111111', N'111111', N'111111', N'111111', N'111111', N'111111@gmail.com', 0)
+
+SET IDENTITY_INSERT [dbo].[Tbl_Admin] OFF
+SET IDENTITY_INSERT [dbo].[Tbl_User] ON 
+
+INSERT [dbo].[Tbl_User] ([UserId], [FullName], [NRCNo], [PhoneNo], [Address], [Password], [CardCode], [Email], [CardType], [CurrentBalance], [Active]) VALUES (1, N'123456', N'123456', N'123456', N'123456', N'111111', N'111111', N'123456@gmail.com', N'specialCard', CAST(340.0000 AS Decimal(18, 4)), 0)
+
+SET IDENTITY_INSERT [dbo].[Tbl_User] OFF
+ALTER TABLE [dbo].[Tbl_Admin] ADD  DEFAULT ('123456') FOR [Password]
+GO
+ALTER TABLE [dbo].[Tbl_Admin] ADD  DEFAULT ('True') FOR [Active]
+GO
+ALTER TABLE [dbo].[Tbl_User] ADD  DEFAULT ('123456') FOR [Password]
+GO
+USE [master]
+GO
+ALTER DATABASE [ATM] SET  READ_WRITE 
+GO
+
