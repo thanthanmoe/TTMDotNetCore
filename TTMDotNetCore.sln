@@ -19,7 +19,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.ThemeMvcApp",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.ATMWebApp", "TTMDotNetCore.ATMWebApp\TTMDotNetCore.ATMWebApp.csproj", "{71E23CE5-BB67-4225-A882-9BA10FDA934F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTMDotNetCore.MinimalApi", "TTMDotNetCore.MinimalApi\TTMDotNetCore.MinimalApi.csproj", "{5E4A35A5-C2DF-48F4-93DF-AB886AB2CDDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.MinimalApi", "TTMDotNetCore.MinimalApi\TTMDotNetCore.MinimalApi.csproj", "{5E4A35A5-C2DF-48F4-93DF-AB886AB2CDDA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.ShoopingCartMvc", "TTMDotNetCore.ShoopingCartMvc\TTMDotNetCore.ShoopingCartMvc.csproj", "{78FB3E0D-8CA2-4727-8FBB-34C3BC56BD48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTMDotNetCore.LoggingConsoleApp", "TTMDotNetCore.LoggingConsoleApp\TTMDotNetCore.LoggingConsoleApp.csproj", "{7FDC81EA-58B0-42D9-A791-75AF79415FA5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{899DE5CA-757F-4813-98E4-782771D5A2C8}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +72,14 @@ Global
 		{5E4A35A5-C2DF-48F4-93DF-AB886AB2CDDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E4A35A5-C2DF-48F4-93DF-AB886AB2CDDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E4A35A5-C2DF-48F4-93DF-AB886AB2CDDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78FB3E0D-8CA2-4727-8FBB-34C3BC56BD48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78FB3E0D-8CA2-4727-8FBB-34C3BC56BD48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78FB3E0D-8CA2-4727-8FBB-34C3BC56BD48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78FB3E0D-8CA2-4727-8FBB-34C3BC56BD48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FDC81EA-58B0-42D9-A791-75AF79415FA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FDC81EA-58B0-42D9-A791-75AF79415FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FDC81EA-58B0-42D9-A791-75AF79415FA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FDC81EA-58B0-42D9-A791-75AF79415FA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

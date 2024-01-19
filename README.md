@@ -1,4 +1,76 @@
-# TTMDotNetCore
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-7.0&tabs=visual-studio
+
+
+username
+a => browser, mobile, other browser
+
+how to get the project name in Code?
+
+
+CustomLog as DbLog
+
+
+Serilog - TextLog, DbLog
+Nlog    - TextLog, DbLog
+Log4net - TextLog, DbLog
+
+![Alt text](https://i.stack.imgur.com/7o9Kk.png)
+
+
+Scaffold-DbContext "Server=.;Database=TestDb;User ID=sa;Password=sa@123;Trusted_Connection=True;Trust Server Certificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context AppDbContext -Tables Tbl_Blog_
+
+https://www.entityframeworktutorial.net/efcore/create-model-for-existing-database-in-ef-core.aspx
+
+https://medium.com/checkout-com-techblog/json-handling-in-net-2a14612e0388
+```csharp
+builder.Services.ConfigureHttpJsonOptions(option =>
+{
+    option.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+    option.SerializerOptions.PropertyNamingPolicy = null;
+});
+```
+
+
+https://learn.microsoft.com/en-us/aspnet/core/fundamentals/app-state?view=aspnetcore-7.0
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddDistributedMemoryCache(); // add this line
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+}); // add this line
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.UseSession(); // add this line
+
+app.MapRazorPages();
+app.MapDefaultControllerRoute();
+
+app.Run();
+```
+
 
 https://www.chartjs.org/docs/latest/getting-started/
 https://www.chartjs.org/docs/latest/samples/information.html
@@ -233,31 +305,32 @@ GO
 - EF Entity Framework (Code First => Create Table, Database First => use in Code) (CRUD)
 RepoDB
 
-Asp.Net Core Web Api (Rest Api)
-    Ado.Net
+- Asp.Net Core Web Api (Rest Api)
     - EF
-    Dapper
-Postman
-Api Call [Console]
-    HttpClient
-    RestClient
-    Refit
-Asp.Net Core MVC
-    Ado.Net
-    EF
-    Dapper
-Api Call [MVC]
-    HttpClient
-    RestClient
-    Refit
-Minimal Api
-Text Logging
-Db Logging
+    - Dapper
+    - Ado.Net
+- Postman
+- Html, Css, JavaScript, jQuer Plugins (SweetAlert, Notiflix, Date Picker, DataTable, iCheck, ladda button, Toast)
+- Asp.Net Core MVC
+    - EF
+    - Dapper
+    - Ado.Net
+- Chart [ApexChart, ChartJs, HighCharts, CanvasJS]
+- UI Design
 
-Chart [ApexChart, ChartJs, HighCharts, CanvasJS]
+- Api Call [Console]
+    - HttpClient
+    - RestClient
+    - Refit
+- Api Call [MVC]
+    - HttpClient
+    - RestClient
+    - Refit
+- Minimal Api
+- Text Logging (serilog, nlog, log4net)
+- Db Logging
 
 SignalR - (Insert Data => UpdateChart, Chat Message)
-UI Design
 Blazor CRUD [Server, WASM]
 ------------------------------------------------------
 Deploy WASM
