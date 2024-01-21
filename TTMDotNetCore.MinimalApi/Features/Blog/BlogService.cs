@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 using TTMDotNetCore.MinimalApi.AppDB;
 using TTMDotNetCore.MinimalApi.Models;
 
@@ -11,13 +12,16 @@ namespace TTMDotNetCore.MinimalApi.Features.Blog
     {
         public static void AddBlogService(this IEndpointRouteBuilder app)
         {
-            app.MapGet("/blog/{pageNo}/{pageSize}", async ([FromServices] AppDbContext db, int pageNo, int pageSize) =>
+            app.MapGet("/blog/{pageNo}/{pageSize}", async ([FromServices] AppDbContext db, [FromServices] ILogger<Program> _logger,
+                int pageNo, int pageSize) =>
             {
-                return await db.Blogs
+                var lst = await db.Blogs
                     .AsNoTracking()
                     .Skip((pageNo - 1) * pageSize)
                     .Take(pageSize)
                     .ToListAsync();
+                _logger.LogInformation(JsonSerializer.Serialize(lst));
+                return lst;
             })
             .WithName("GetBlogs")
             .WithOpenApi();

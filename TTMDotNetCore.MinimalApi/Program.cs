@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System.Text.Json.Serialization;
 using TTMDotNetCore.MinimalApi.AppDB;
 using TTMDotNetCore.MinimalApi.Features.Blog;
