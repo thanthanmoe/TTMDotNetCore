@@ -3,12 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTMDotNetCore.WindowsFormApp", "TTMDotNetCore.WindowsFormApp\TTMDotNetCore.WindowsFormApp.csproj", "{4DC74CF6-C650-4807-AB2C-FF6DD4E8E7EE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.ConsoleApp", "TTMDotNetCore.ConsoleApp\TTMDotNetCore.ConsoleApp.csproj", "{4C77A151-4DEB-4F86-A7F2-DDE074D487EA}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.WebAPI", "TTMDotNetCore.WebAPI\TTMDotNetCore.WebAPI.csproj", "{DF22138C-9B4D-4DFD-BD37-18581DCD2CF4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.RestAPI", "TTMDotNetCore.RestAPI\TTMDotNetCore.RestAPI.csproj", "{6E96E607-B3FE-4273-8B69-3FA1440246F4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.MvcApp", "TTMDotNetCore.MvcApp\TTMDotNetCore.MvcApp.csproj", "{ED12FB8C-FE27-4192-B104-AEF9ED123278}"
@@ -23,12 +17,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.MinimalApi", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.ShoopingCartMvc", "TTMDotNetCore.ShoopingCartMvc\TTMDotNetCore.ShoopingCartMvc.csproj", "{78FB3E0D-8CA2-4727-8FBB-34C3BC56BD48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTMDotNetCore.LoggingConsoleApp", "TTMDotNetCore.LoggingConsoleApp\TTMDotNetCore.LoggingConsoleApp.csproj", "{7FDC81EA-58B0-42D9-A791-75AF79415FA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTMDotNetCore.LoggingConsoleApp", "TTMDotNetCore.LoggingConsoleApp\TTMDotNetCore.LoggingConsoleApp.csproj", "{7FDC81EA-58B0-42D9-A791-75AF79415FA5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{899DE5CA-757F-4813-98E4-782771D5A2C8}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTMDotNetCore.DbFirstCommandApp", "TTMDotNetCore.DbFirstCommandApp\TTMDotNetCore.DbFirstCommandApp.csproj", "{AF2ED5A4-5DCB-4E42-ABDC-B5E9CBD75528}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,18 +32,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4DC74CF6-C650-4807-AB2C-FF6DD4E8E7EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4DC74CF6-C650-4807-AB2C-FF6DD4E8E7EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4DC74CF6-C650-4807-AB2C-FF6DD4E8E7EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4DC74CF6-C650-4807-AB2C-FF6DD4E8E7EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C77A151-4DEB-4F86-A7F2-DDE074D487EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C77A151-4DEB-4F86-A7F2-DDE074D487EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C77A151-4DEB-4F86-A7F2-DDE074D487EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C77A151-4DEB-4F86-A7F2-DDE074D487EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF22138C-9B4D-4DFD-BD37-18581DCD2CF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF22138C-9B4D-4DFD-BD37-18581DCD2CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF22138C-9B4D-4DFD-BD37-18581DCD2CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF22138C-9B4D-4DFD-BD37-18581DCD2CF4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6E96E607-B3FE-4273-8B69-3FA1440246F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6E96E607-B3FE-4273-8B69-3FA1440246F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E96E607-B3FE-4273-8B69-3FA1440246F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -80,6 +64,10 @@ Global
 		{7FDC81EA-58B0-42D9-A791-75AF79415FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FDC81EA-58B0-42D9-A791-75AF79415FA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FDC81EA-58B0-42D9-A791-75AF79415FA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF2ED5A4-5DCB-4E42-ABDC-B5E9CBD75528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF2ED5A4-5DCB-4E42-ABDC-B5E9CBD75528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF2ED5A4-5DCB-4E42-ABDC-B5E9CBD75528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF2ED5A4-5DCB-4E42-ABDC-B5E9CBD75528}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

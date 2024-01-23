@@ -17,7 +17,7 @@ Log4net - TextLog, DbLog
 ![Alt text](https://i.stack.imgur.com/7o9Kk.png)
 
 
-Scaffold-DbContext "Server=.;Database=TestDb;User ID=sa;Password=sa@123;Trusted_Connection=True;Trust Server Certificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context AppDbContext -Tables Tbl_Blog_
+Scaffold-DbContext "Server=.;Database=TestDb;User ID=sa;Password=sasa;Trusted_Connection=True;Trust Server Certificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context AppDbContext -Tables Tbl_Blog
 
 https://www.entityframeworktutorial.net/efcore/create-model-for-existing-database-in-ef-core.aspx
 

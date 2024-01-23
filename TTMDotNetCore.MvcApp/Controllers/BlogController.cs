@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Text.Json;
 using TTMDotNetCore.MvcApp.AppDB;
 using TTMDotNetCore.MvcApp.Models;
 
@@ -7,48 +9,57 @@ namespace TTMDotNetCore.MvcApp.Controllers
 {
     public class BlogController : Controller
     {
-       private readonly AppDbContext _context;
-
-        public BlogController(AppDbContext context)
+        private readonly AppDbContext _context;
+        private readonly ILogger<BlogController> _logger;
+        public BlogController(AppDbContext context, ILogger<BlogController> logger = null)
         {
             _context = context;
+            _logger = logger;
         }
 
         [ActionName("Index")]
         public async Task<IActionResult> BlogIndex(int pageNo = 1, int pageSize = 10)
         {
-            List<BlogDataModel> lst = await _context.Blogs
+            try
+            {
+                List<BlogDataModel> lst = await _context.Blogs
                 .AsNoTracking()
                 .OrderByDescending(x => x.Blog_Id)
                 .Skip((pageNo - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
+                _logger.LogInformation("GetBlogs - Retrieved blog data: {BlogData}", JsonSerializer.Serialize(lst));
+                int pageRowCount = await _context.Blogs.CountAsync();
+                int pageCount = pageRowCount / pageSize;
+                if (pageRowCount % pageSize > 0)
+                    pageCount++;
 
-            int pageRowCount = await _context.Blogs.CountAsync();
-            int pageCount = pageRowCount / pageSize;
-            if (pageRowCount % pageSize > 0)
-                pageCount++;
+                //string a = "hello world";
+                //ViewData["Title2"] = a;
+                //ViewData["Number"] = 2;
+                //ViewBag.Number2 = 3;
 
-            //string a = "hello world";
-            //ViewData["Title2"] = a;
-            //ViewData["Number"] = 2;
-            //ViewBag.Number2 = 3;
+                //TempData["Title2"] = a;
+                //TempData["Number"] = 2;
+                //TempData["Number2"] = 3;
+                //return Redirect("/Home");
 
-            //TempData["Title2"] = a;
-            //TempData["Number"] = 2;
-            //TempData["Number2"] = 3;
-            //return Redirect("/Home");
+                BlogListResponseModel model = new BlogListResponseModel
+                {
+                    BlogList = lst,
+                    PageCount = pageCount,
+                    PageNo = pageNo,
+                    PageRowCount = pageRowCount,
+                    PageSize = pageSize
+                };
 
-            BlogListResponseModel model = new BlogListResponseModel
+                return View("BlogIndex", model);
+            }
+            catch (Exception ex)
             {
-                BlogList = lst,
-                PageCount = pageCount,
-                PageNo = pageNo,
-                PageRowCount = pageRowCount,
-                PageSize = pageSize
-            };
-
-            return View("BlogIndex", model);
+                _logger.LogError(ex, "Error in GetBlogs");
+                return StatusCode(500, "Internal Server Error");
+            }
         }
 
         [ActionName("Create")]
@@ -96,24 +107,36 @@ namespace TTMDotNetCore.MvcApp.Controllers
         [ActionName("Edit")]
         public async Task<IActionResult> BlogEdit(int id)
         {
-            bool isExist = await _context.Blogs.AsNoTracking().AnyAsync(x => x.Blog_Id == id);
-            if (!isExist)
+            try
             {
-                TempData["IsSuccess"] = false;
-                TempData["Message"] = "No data found.";
-                return Redirect("/Blog");
-            }
+                bool isExist = await _context.Blogs.AsNoTracking().AnyAsync(x => x.Blog_Id == id);
+                if (!isExist)
+                {
+                    _logger.LogWarning($"GetBlog - No data found for ID: {id}");
+                    TempData["IsSuccess"] = false;
+                    TempData["Message"] = "No data found.";
+                    return Redirect("/Blog");
+                }
 
-            var item = await _context.Blogs.AsNoTracking().FirstOrDefaultAsync(x => x.Blog_Id == id);
-            if (item == null)
+                var item = await _context.Blogs.AsNoTracking().FirstOrDefaultAsync(x => x.Blog_Id == id);
+                if (item == null)
+                {
+                    _logger.LogWarning($"GetBlog - No data found for ID: {id}");
+                    TempData["IsSuccess"] = false;
+                    TempData["Message"] = "No data found.";
+                    return Redirect("/Blog");
+                }
+                _logger.LogInformation("GetBlogs - Retrieved blog data: {BlogData}", JsonSerializer.Serialize(item));
+
+                return View("BlogEdit", item);
+
+            }
+            catch (Exception ex)
             {
-                TempData["IsSuccess"] = false;
-                TempData["Message"] = "No data found.";
-                return Redirect("/Blog");
+                _logger.LogError(ex, "Error in GetBlogs");
+                return StatusCode(500, "Internal Server Error");
             }
-
-            return View("BlogEdit", item);
-        }
+         }
 
         [HttpPost]
         [ActionName("Update")]
