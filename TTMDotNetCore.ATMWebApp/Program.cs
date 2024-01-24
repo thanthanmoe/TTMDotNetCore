@@ -3,21 +3,21 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using log4net.Config;
 using log4net;
-
 try
 {
+
+    #region log4Net
     var log4NetRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
-XmlConfigurator.Configure(log4NetRepository, new FileInfo("log4net.config"));
-//XmlConfigurator.Configure(log4NetRepository, new FileInfo("log4nettxt.config"));
-ILog log = LogManager.GetLogger(typeof(Program));
-log.Info("This is a test message.");
+    XmlConfigurator.Configure(log4NetRepository, new FileInfo("log4net.config"));
+    #endregion
 
-var builder = WebApplication.CreateBuilder(args);
-//for db
-builder.Logging.AddLog4Net();
+    ILog log = LogManager.GetLogger(typeof(Program));
+    log.Info("Log4Net  application started...");
 
+    var builder = WebApplication.CreateBuilder(args);
+    builder.Logging.AddLog4Net();
 
-builder.Services.AddControllersWithViews();
+    builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     string? connectionString = builder.Configuration.GetConnectionString("DbConnection");
