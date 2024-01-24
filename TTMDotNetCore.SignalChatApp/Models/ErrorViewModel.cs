@@ -1,4 +1,4 @@
-namespace TTMDotNetCore.SignalChatApp.Models
+namespace TTMDotNetCore.SignalRChatApp.Models
 {
     public class ErrorViewModel
     {

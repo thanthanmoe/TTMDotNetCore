@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using System.Diagnostics;
-using TTMDotNetCore.SignalChatApp.Models;
+using TTMDotNetCore.SignalRChatApp.Models;
 using TTMDotNetCore.SignalRChatApp.Hubs;
 
-namespace TTMDotNetCore.SignalChatApp.Controllers
+namespace TTMDotNetCore.SignalRChatApp.Controllers
 {
     public class HomeController : Controller
     {
