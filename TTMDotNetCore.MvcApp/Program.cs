@@ -82,13 +82,13 @@ using TTMDotNetCore.MvcApp.Interfaces;
 //    logger.Error("Application started fail..");
 //}
 
+var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+//LogManager.Setup().LoadConfiguration(builder =>
+//{
+//    builder.ForLogger().FilterMinLevel(NLog.LogLevel.Debug).WriteToFile(fileName: "D:/TTMDotNetCore/nlog_${shortdate}.txt");
+//});
 
-LogManager.Setup().LoadConfiguration(builder =>
-{
-    builder.ForLogger().FilterMinLevel(NLog.LogLevel.Debug).WriteToFile(fileName: "D:/TTMDotNetCore/nlog_${shortdate}.txt");
-});
-
-var logger = LogManager.GetCurrentClassLogger();
+//var logger = LogManager.GetCurrentClassLogger();
 try
 {
 

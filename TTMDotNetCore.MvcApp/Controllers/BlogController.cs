@@ -112,7 +112,7 @@ namespace TTMDotNetCore.MvcApp.Controllers
                 bool isExist = await _context.Blogs.AsNoTracking().AnyAsync(x => x.Blog_Id == id);
                 if (!isExist)
                 {
-                    _logger.LogWarning($"GetBlog - No data found for ID: {id}");
+                    _logger.LogError($"GetBlog - No data found for ID: {id}");
                     TempData["IsSuccess"] = false;
                     TempData["Message"] = "No data found.";
                     return Redirect("/Blog");
